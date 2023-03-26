@@ -10,7 +10,6 @@ public class ConsoleTableUI : ITableUI
 {
     public string drawTable(string tableGenerated)
     {
-        Console.WriteLine($"Text");
         return "";
     }
 }

@@ -1,4 +1,4 @@
-namespace repositories;
+namespace CEM.Repositories;
 
 public interface ICategoryRepository
 {

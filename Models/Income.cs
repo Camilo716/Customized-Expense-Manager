@@ -1,6 +1,6 @@
 namespace CEM.Models;
 
-public class TransactionModel
+public class IncomeModel
 {
     
 }
