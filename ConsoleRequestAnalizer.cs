@@ -6,6 +6,7 @@ public enum RequestType{
     Expense,
     Income,
     Report,
+    Invalid,
 }
 
 public class ConsoleRequestHandler
@@ -15,7 +16,7 @@ public class ConsoleRequestHandler
     string category = "";
     string description = "";
     float value = 0;
-    RequestType requestType;
+    RequestType requestType = RequestType.Invalid;
 
 
     public ConsoleRequestHandler(string[] _args)
@@ -25,19 +26,35 @@ public class ConsoleRequestHandler
 
     public RequestType getRequestType()
     {
-        checkIfIsExpense();
+        processRequest();
         return requestType;
     }
 
-    public void checkIfIsExpense()
+    private void processRequest()
     {
-        if (args[0] == "--expense")
+        if (ArgumentsOK() && RequestOK())
         {
-            requestType = RequestType.Expense;
             setValues();
-            validateRequest("expense");
         }
     }
+
+    private bool RequestOK()
+    {
+        switch (args[0])
+        {
+            case "--expense":
+                requestType = RequestType.Expense;
+                return true;
+    
+            case "--income":
+                requestType = RequestType.Income;
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
 
     private void setValues()
     {
@@ -46,12 +63,14 @@ public class ConsoleRequestHandler
         value = float.Parse(args[3]); 
     }
 
-    private void validateRequest(string type)
+    private bool ArgumentsOK()
     {
-        bool missArguments = string.IsNullOrEmpty(category) || string.IsNullOrEmpty(description) || value == 0;
-        if (missArguments)
+        bool invalidArguments = args.Length != 4;
+        if (invalidArguments)
         {
-            Console.WriteLine($"Missing argument: --{type} <category> <description> <value>");
+            //Console.WriteLine($"Missing argument: --type <category> <description> <value>");
+            return false;
         }
+        return true;
     }
 }
