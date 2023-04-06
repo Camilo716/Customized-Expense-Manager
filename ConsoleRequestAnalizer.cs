@@ -30,12 +30,24 @@ public class ConsoleRequestHandler
         return requestType;
     }
 
+
     private void processRequest()
     {
         if (ArgumentsOK() && RequestOK())
         {
             setValues();
         }
+    }
+
+    private bool ArgumentsOK()
+    {
+        bool invalidArguments = args.Length != 4;
+        if (invalidArguments)
+        {
+            //Console.WriteLine($"Missing argument: --type <category> <description> <value>");
+            return false;
+        }
+        return true;
     }
 
     private bool RequestOK()
@@ -63,14 +75,4 @@ public class ConsoleRequestHandler
         value = float.Parse(args[3]); 
     }
 
-    private bool ArgumentsOK()
-    {
-        bool invalidArguments = args.Length != 4;
-        if (invalidArguments)
-        {
-            //Console.WriteLine($"Missing argument: --type <category> <description> <value>");
-            return false;
-        }
-        return true;
-    }
 }

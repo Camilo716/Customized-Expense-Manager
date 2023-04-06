@@ -1,7 +1,6 @@
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/Customized-Expense-Manager.deps.json
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/Customized-Expense-Manager.runtimeconfig.json
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/Customized-Expense-Manager.dll
-/home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/ref/Customized-Expense-Manager.dll
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/Customized-Expense-Manager.pdb
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/obj/Debug/net6.0/Customized-Expense-Manager.csproj.AssemblyReference.cache
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/obj/Debug/net6.0/Customized-Expense-Manager.GeneratedMSBuildEditorConfig.editorconfig
@@ -96,3 +95,4 @@
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 /home/camilogs/Desktop/Proyects/Customized-Expense-Manager/bin/Debug/net6.0/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+/home/camilogs/Desktop/Proyects/Customized-Expense-Manager/obj/Debug/net6.0/refint/Customized-Expense-Manager.dll
