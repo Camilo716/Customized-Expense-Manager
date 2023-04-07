@@ -31,8 +31,8 @@ public class ConsoleRequestHandlerTests
     {
         string[] incomeArgs = new string[]{
             "--income",
-            "eCategory",
-            "eDescription",
+            "InCategory",
+            "InDescription",
             "100"
         };
 
@@ -41,5 +41,38 @@ public class ConsoleRequestHandlerTests
         var operationType = requestAnalizer.getRequestType();
 
         Assert.That(operationType, Is.EqualTo(RequestType.Income));
+    }
+
+    [Test]
+    public void invalidRequestTest()
+    {  
+        string[] incomeArgs = new string[]{
+            "InvalidRequest",
+            "Category",
+            "Description",
+            "100"
+        };
+
+        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+
+        var operationType = requestAnalizer.getRequestType();
+
+        Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
+    }
+
+    [Test]
+    public void invalidArgumentsTest()
+    {  
+        string[] incomeArgs = new string[]{
+            "--income",
+            "eCategory",
+            "eDescription",
+        };
+
+        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+
+        var operationType = requestAnalizer.getRequestType();
+
+        Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
     }
 }
