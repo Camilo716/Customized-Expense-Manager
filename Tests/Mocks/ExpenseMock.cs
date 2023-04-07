@@ -4,7 +4,7 @@ using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
 
-public class ExpenseMock : ICategoryRepository
+public class ExpenseMock : IExpenseRepository
 {
     private List<ExpenseModel> _categories;
     
@@ -20,4 +20,8 @@ public class ExpenseMock : ICategoryRepository
         };
     }
 
+    public void createExpense()
+    {
+
+    }
 }

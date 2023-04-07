@@ -4,7 +4,7 @@ using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
 
-public class IncomeMock : ICategoryRepository
+public class IncomeMock : IIncomeRepository
 {
     private List<IncomeModel> _categories;
     
@@ -18,5 +18,10 @@ public class IncomeMock : ICategoryRepository
             new IncomeModel{},
             new IncomeModel{},
         };
+    }
+
+    public void createIncome()
+    {
+        
     }
 }

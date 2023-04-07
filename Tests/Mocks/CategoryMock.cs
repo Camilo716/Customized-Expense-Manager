@@ -18,7 +18,11 @@ public class CategoryMock : ICategoryRepository
             new CategoryModel{},
             new CategoryModel{},
         };
-
-
     }
+
+    public void createNewCategory()
+    {
+        
+    }
+
 }
