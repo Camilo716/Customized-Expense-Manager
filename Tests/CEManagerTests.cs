@@ -1,9 +1,11 @@
 using NUnit.Framework;
 using CEM.Tests.Mocks;
 using CEM.Util;
+using CEM.Models;
 using System.Collections.Generic;
 
 namespace CEM.Tests;
+
 /*
 public class CEManagerTests
 {
@@ -12,7 +14,6 @@ public class CEManagerTests
     public void Setup()
     {
     }
-
     [Test]
     public void createIncomeInNewCategoryTest()
     {  
@@ -26,8 +27,11 @@ public class CEManagerTests
         CEManager manager = createCEManager(RequestType.Income, transactionData);
         
         manager.doTransaction();
+
+   
+        List<IncomeModel> incomes = manager.incomeMock.getAllIncomesByCategoryID();
         
-        List<string> manager.incomeMock.getAllIncomesByCategoryID();
+        Assert.That()
     }
     
 
