@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace CEM.Util;
 
 public enum RequestType{
@@ -9,17 +11,22 @@ public enum RequestType{
 
 public class ConsoleRequestHandler
 {
-    string[] args;
+    string[] receivedArgs;
 
-    string category = "";
-    string description = "";
-    float value = 0;
+    Dictionary<string, string> transactionData = new Dictionary<string, string>()
+    {
+        {"category", ""},
+        {"description", ""},
+        {"value", ""},
+    };
+    
+
     RequestType requestType = RequestType.Invalid;
 
 
     public ConsoleRequestHandler(string[] _args)
     {
-        args = _args;
+        receivedArgs = _args;
     }
 
     public RequestType getRequestType()
@@ -39,7 +46,8 @@ public class ConsoleRequestHandler
 
     private bool ArgumentsOK()
     {
-        bool invalidArguments = args.Length != 4;
+        bool invalidArguments = receivedArgs.Length != 4;
+
         if (invalidArguments)
         {
             //Console.WriteLine($"Missing argument: --type <category> <description> <value>");
@@ -50,7 +58,7 @@ public class ConsoleRequestHandler
 
     private bool RequestOK()
     {
-        switch (args[0])
+        switch (receivedArgs[0])
         {
             case "--expense":
                 requestType = RequestType.Expense;
@@ -68,9 +76,9 @@ public class ConsoleRequestHandler
 
     private void setValues()
     {
-        category = args[1];
-        description = args[2];
-        value = float.Parse(args[3]); 
+        transactionData["category"] = receivedArgs[1];
+        transactionData["description"] = receivedArgs[2];
+        transactionData["value"] = receivedArgs[3]; 
     }
 
 }
