@@ -5,7 +5,7 @@ using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
 
-public class ExpenseMock : IExpenseRepository
+public class ExpenseMock : ITransactionRepository
 {
     private List<ExpenseModel> _expenses;
     
@@ -19,8 +19,14 @@ public class ExpenseMock : IExpenseRepository
         };
     }
 
-    public void createExpense()
+    public void makeTransaction(string _description, int _amount, string _CategoryID)
     {
-
+        _expenses.Add(
+            new ExpenseModel{
+                description = _description, 
+                amount = _amount,
+                CategoryID = _CategoryID
+            }
+        );
     }
 }

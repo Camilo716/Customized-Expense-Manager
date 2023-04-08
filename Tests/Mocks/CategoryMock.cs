@@ -19,9 +19,9 @@ public class CategoryMock : ICategoryRepository
         };
     }
 
-    public void createNewCategory()
+    public void createNewCategory(string _name)
     {
-        //_categories.Add(new CategoryModel{});
+        _categories.Add(new CategoryModel{name = _name});
     }
 
 }

@@ -5,7 +5,7 @@ using CEM.Models;
 using System.Collections.Generic;
 using System;
 
-public class IncomeMock : IIncomeRepository
+public class IncomeMock : ITransactionRepository
 {
     private List<IncomeModel> _incomes;
     
@@ -19,8 +19,14 @@ public class IncomeMock : IIncomeRepository
         };
     }
 
-    public void createIncome()
+    public void makeTransaction(string _description, int _amount, string _CategoryID)
     {
-        
+        _incomes.Add(
+            new IncomeModel{
+                description = _description, 
+                amount = _amount,
+                CategoryID = _CategoryID
+            }
+        );
     }
 }
