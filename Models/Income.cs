@@ -1,8 +1,11 @@
 namespace CEM.Models;
 
+using System;
+
 public class IncomeModel
 {
-    string description {get;set;}
-    int amount {get;set;}
-    CategoryModel CategoryID {get;set;}
+    public Guid incomeID {get;set;}
+    public string description {get;set;}
+    public int amount {get;set;}
+    public string CategoryID {get;set;}
 }
