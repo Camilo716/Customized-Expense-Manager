@@ -19,7 +19,7 @@ public class ConsoleRequestHandler
         {"description", ""},
         {"value", ""},
     };
-    
+
 
     RequestType requestType = RequestType.Invalid;
 
@@ -35,6 +35,10 @@ public class ConsoleRequestHandler
         return requestType;
     }
 
+    public Dictionary<string,string> getTransactionData()
+    {
+        return transactionData;
+    }
 
     private void processRequest()
     {

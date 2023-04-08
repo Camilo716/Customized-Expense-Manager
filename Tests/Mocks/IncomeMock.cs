@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 public class IncomeMock : IIncomeRepository
 {
-    private List<IncomeModel> _categories;
+    private List<IncomeModel> _incomes;
     
     
     public IncomeMock()
     {
-        _categories = new List<IncomeModel>
+        _incomes = new List<IncomeModel>
         {
             new IncomeModel{},
             new IncomeModel{},

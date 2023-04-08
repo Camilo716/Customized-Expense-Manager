@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 public class ExpenseMock : IExpenseRepository
 {
-    private List<ExpenseModel> _categories;
+    private List<ExpenseModel> _expenses;
     
     
     public ExpenseMock()
     {
-        _categories = new List<ExpenseModel>
+        _expenses = new List<ExpenseModel>
         {
             new ExpenseModel{},
             new ExpenseModel{},
