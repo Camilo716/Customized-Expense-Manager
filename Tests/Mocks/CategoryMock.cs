@@ -24,4 +24,15 @@ public class CategoryMock : ICategoryRepository
         _categories.Add(new CategoryModel{name = _name});
     }
 
+    public List<string> getAllCategoriesNames()
+    {
+        var categoriesNames = new List<string>();
+
+        for (int categ = 0; categ < _categories.Count; categ++)
+        {
+            categoriesNames.Add(_categories[categ].name);
+        }
+
+        return categoriesNames;
+    }
 }

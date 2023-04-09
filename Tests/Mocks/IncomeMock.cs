@@ -4,8 +4,9 @@ using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
-public class IncomeMock : ITransactionRepository
+public class IncomeMock : ITransactionRepository<IncomeModel>
 {
     private List<IncomeModel> _incomes;
     
@@ -19,7 +20,7 @@ public class IncomeMock : ITransactionRepository
         };
     }
 
-    public void makeTransaction(string _description, int _amount, string _CategoryID)
+    public void addTransaction(string _description, float _amount, string _CategoryID)
     {
         _incomes.Add(
             new IncomeModel{
@@ -29,4 +30,13 @@ public class IncomeMock : ITransactionRepository
             }
         );
     }
+
+    public List<IncomeModel> getAllTransactionsByCategoryID(string _categoryID)
+    {
+        List<IncomeModel> incomesByCategory = _incomes.Where(income=>income.CategoryID == _categoryID).ToList();
+
+        return incomesByCategory;
+    }
+
+
 }
