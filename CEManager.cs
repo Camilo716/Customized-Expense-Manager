@@ -38,7 +38,6 @@ public class CEManager
     private void makeIncomeTransaction()
     {
         tryCreateCategory();
-        
         incomeDataAccess.addTransaction
         (
             transactionData["description"],
