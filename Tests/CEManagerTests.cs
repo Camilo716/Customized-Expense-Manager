@@ -35,7 +35,11 @@ public class CEManagerTests
 
         List<TransactionModel> incomesExpected = new List<TransactionModel>
         {
-            new TransactionModel{ description = "IncomeDescription", amount = 1000, transactionType = RequestType.Income, CategoryID = "NewCategory"},
+            new TransactionModel{
+                description = "IncomeDescription",
+                amount = 1000,
+                transactionType = RequestType.Income,
+                CategoryID = "NewCategory"}
         };
 
         List<TransactionModel> incomes = manager.transactionDataAccess.

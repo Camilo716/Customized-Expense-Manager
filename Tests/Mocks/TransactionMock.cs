@@ -16,8 +16,21 @@ public class TransactionMock : ITransactionRepository
     {
         _transactions = new List<TransactionModel>
         {
-            new TransactionModel{transactionID = Guid.NewGuid(), description = "Fuel", amount = 500, CategoryID = "Transport"},
-            new TransactionModel{transactionID = Guid.NewGuid(), description = "Courses", amount = 500, CategoryID = "Education"}
+            new TransactionModel
+            {
+                transactionID = Guid.NewGuid(), 
+                description = "Fuel", amount = 500, 
+                transactionType = RequestType.Expense, 
+                CategoryID = "Transport"
+            },
+            new TransactionModel
+            {
+                transactionID = Guid.NewGuid(), 
+                description = "Courses", 
+                amount = 500,
+                transactionType = RequestType.Income, 
+                CategoryID = "Education"
+            }
         };
     }
 
