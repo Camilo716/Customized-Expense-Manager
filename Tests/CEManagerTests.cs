@@ -34,7 +34,7 @@ public class CEManagerTests
         manager.makeTransaction();
 
 
-        List<TransactionModel> TransactionsExpected = new List<TransactionModel>
+        List<TransactionModel> transactionsExpected = new List<TransactionModel>
         {
             new TransactionModel{
                 description = "transactionDescription",
@@ -43,15 +43,15 @@ public class CEManagerTests
                 CategoryID = "NewCategory"}
         };
 
-        List<TransactionModel> transactions = manager.transactionDataAccess.
+        List<TransactionModel> transactionsReceived = manager.transactionDataAccess.
             getAllTransactionsByTypeAndCategoryID(
                 RequestType.Income, transactionData["category"]
             );
 
-        var totalDataExpected = getDataFromAllTransactions(TransactionsExpected);
-        var totalDataRecieved = getDataFromAllTransactions(transactions);
+        var totalDataExpected = getDataFromAllTransactions(transactionsExpected);
+        var totalDataReceived = getDataFromAllTransactions(transactionsReceived);
 
-        Assert.That(totalDataRecieved, Is.EquivalentTo(totalDataExpected));
+        Assert.That(totalDataReceived, Is.EquivalentTo(totalDataExpected));
     }
     
     private ArrayList getDataFromAllTransactions(List<TransactionModel> transactions)
