@@ -18,13 +18,14 @@ public class CEManagerTests
     public void Setup()
     {
     }
+    
     [Test]
     public void createTransactionInNewCategoryTest()
     {  
         var transactionData = new Dictionary<string, string>()
         {
             {"category", "NewCategory"},
-            {"description", "IncomeDescription"},
+            {"description", "transactionDescription"},
             {"value", "1000"},
         };
         CEManager manager = createCEManager(RequestType.Income, transactionData);
@@ -33,34 +34,34 @@ public class CEManagerTests
         manager.makeTransaction();
 
 
-        List<TransactionModel> incomesExpected = new List<TransactionModel>
+        List<TransactionModel> TransactionsExpected = new List<TransactionModel>
         {
             new TransactionModel{
-                description = "IncomeDescription",
+                description = "transactionDescription",
                 amount = 1000,
                 transactionType = RequestType.Income,
                 CategoryID = "NewCategory"}
         };
 
-        List<TransactionModel> incomes = manager.transactionDataAccess.
+        List<TransactionModel> transactions = manager.transactionDataAccess.
             getAllTransactionsByTypeAndCategoryID(
                 RequestType.Income, transactionData["category"]
             );
 
-        var totalDataExpected = getAllDataFromAllIncomes(incomesExpected);
-        var totalDataRecieved = getAllDataFromAllIncomes(incomes);
+        var totalDataExpected = getDataFromAllTransactions(TransactionsExpected);
+        var totalDataRecieved = getDataFromAllTransactions(transactions);
 
         Assert.That(totalDataRecieved, Is.EquivalentTo(totalDataExpected));
     }
     
-    private ArrayList getAllDataFromAllIncomes(List<TransactionModel> incomes)
+    private ArrayList getDataFromAllTransactions(List<TransactionModel> transactions)
     {
         var allData = new ArrayList();
 
-        for (int i = 0; i < incomes.Count; i++)
+        for (int i = 0; i < transactions.Count; i++)
         {
-            allData.Add(incomes[i].description);
-            allData.Add(incomes[i].CategoryID);  
+            allData.Add(transactions[i].description);
+            allData.Add(transactions[i].CategoryID);  
         }
 
         return allData;
