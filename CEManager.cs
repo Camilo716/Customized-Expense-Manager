@@ -37,17 +37,22 @@ public class CEManager
 
     private void makeIncomeTransaction()
     {
-        if (categoryAlreadyExist() == false)
-        {
-            categoryDataAccess.createNewCategory(transactionData["category"]);
-        }
-
+        tryCreateCategory();
+        
         incomeDataAccess.addTransaction
         (
             transactionData["description"],
             float.Parse(transactionData["value"]),
             transactionData["category"]
         );   
+    }
+
+    private void tryCreateCategory()
+    {
+        if (categoryAlreadyExist() == false)
+        {
+            categoryDataAccess.createNewCategory(transactionData["category"]);
+        }
     }
 
     private bool categoryAlreadyExist()
