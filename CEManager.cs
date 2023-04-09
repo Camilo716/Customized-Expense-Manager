@@ -4,44 +4,33 @@ using CEM.Models;
 using System.Collections.Generic;
 public class CEManager
 {
-    public ITransactionRepository<ExpenseModel> expenseDataAccess; 
-    public ITransactionRepository<IncomeModel> incomeDataAccess; 
+    public ITransactionRepository transactionDataAccess; 
     private ICategoryRepository categoryDataAccess; 
     private RequestType requestType;
     private Dictionary<string, string> transactionData;
 
     public CEManager
     (
-        ITransactionRepository<ExpenseModel> _expenseDataAccess, 
-        ITransactionRepository<IncomeModel> _incomeDataAccess, 
+        ITransactionRepository _incomeDataAccess, 
         ICategoryRepository _categoryDataAccess, 
         RequestType _requestType, 
         Dictionary<string, string> _transactionData
     )
     {
-        expenseDataAccess = _expenseDataAccess;
-        incomeDataAccess = _incomeDataAccess;
+        transactionDataAccess = _incomeDataAccess;
         categoryDataAccess = _categoryDataAccess;
         requestType = _requestType;
         transactionData =  _transactionData;
     }
 
-    public void proccessTransaction()
-    {
-        if (requestType == RequestType.Income)
-        {
-            makeIncomeTransaction();
-        }
-
-    }
-
-    private void makeIncomeTransaction()
+    public void makeTransaction()
     {
         tryCreateCategory();
-        incomeDataAccess.addTransaction
+        transactionDataAccess.addTransaction
         (
             transactionData["description"],
             float.Parse(transactionData["value"]),
+            requestType,
             transactionData["category"]
         );   
     }

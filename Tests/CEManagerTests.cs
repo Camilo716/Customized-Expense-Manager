@@ -19,7 +19,7 @@ public class CEManagerTests
     {
     }
     [Test]
-    public void createIncomeInNewCategoryTest()
+    public void createTransactionInNewCategoryTest()
     {  
         var transactionData = new Dictionary<string, string>()
         {
@@ -30,21 +30,26 @@ public class CEManagerTests
         CEManager manager = createCEManager(RequestType.Income, transactionData);
         
 
-        manager.proccessTransaction();
+        manager.makeTransaction();
 
 
-        List<IncomeModel> incomesExpected = new List<IncomeModel>
+        List<TransactionModel> incomesExpected = new List<TransactionModel>
         {
-            new IncomeModel{ description = "IncomeDescription", amount = 1000, CategoryID = "NewCategory"},
+            new TransactionModel{ description = "IncomeDescription", amount = 1000, transactionType = RequestType.Income, CategoryID = "NewCategory"},
         };
-        List<IncomeModel> incomes = manager.incomeDataAccess.getAllTransactionsByCategoryID(transactionData["category"]);
-        var totalDataExpected = getAllDataFromAllRegister(incomesExpected);
-        var totalDataRecieved = getAllDataFromAllRegister(incomes);
+
+        List<TransactionModel> incomes = manager.transactionDataAccess.
+            getAllTransactionsByTypeAndCategoryID(
+                RequestType.Income, transactionData["category"]
+            );
+
+        var totalDataExpected = getAllDataFromAllIncomes(incomesExpected);
+        var totalDataRecieved = getAllDataFromAllIncomes(incomes);
 
         Assert.That(totalDataRecieved, Is.EquivalentTo(totalDataExpected));
     }
     
-    private ArrayList getAllDataFromAllRegister(List<IncomeModel> incomes)
+    private ArrayList getAllDataFromAllIncomes(List<TransactionModel> incomes)
     {
         var allData = new ArrayList();
 
@@ -56,12 +61,12 @@ public class CEManagerTests
 
         return allData;
     }
+
     private CEManager createCEManager(RequestType _requestType, Dictionary<string,string> _transactionData)
     {
-        ITransactionRepository<IncomeModel> incomeMock = new IncomeMock();
-        ITransactionRepository<ExpenseModel> expenseMock = new ExpenseMock();
+        ITransactionRepository transactionMock = new TransactionMock();
         CategoryMock categoryMock = new CategoryMock();
-        CEManager manager = new CEManager(expenseMock, incomeMock, categoryMock, _requestType, _transactionData);
+        CEManager manager = new CEManager(transactionMock, categoryMock, _requestType, _transactionData);
 
         return manager;
     }
