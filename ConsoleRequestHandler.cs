@@ -11,18 +11,12 @@ public enum RequestType{
 
 public class ConsoleRequestHandler
 {
-    string[] receivedArgs;
-
-    Dictionary<string, string> transactionData = new Dictionary<string, string>()
+    private string[] receivedArgs;
+    private Dictionary<string, string> transactionData = new Dictionary<string, string>()
     {
-        {"category", ""},
-        {"description", ""},
-        {"value", ""},
+        {"category", ""},{"description", ""},{"value", ""},
     };
-
-
-    RequestType requestType = RequestType.Invalid;
-
+    private RequestType requestType = RequestType.Invalid;
 
     public ConsoleRequestHandler(string[] _args)
     {
