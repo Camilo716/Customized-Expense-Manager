@@ -4,6 +4,6 @@ using CEM.Models;
 using System.Collections.Generic;
 public interface ICategoryRepository
 {
-    void createNewCategory(string name);
-    List<string> getAllCategoriesNames();
+    void CreateNewCategory(string name);
+    List<string> GetAllCategoriesNames();
 }

@@ -19,12 +19,12 @@ public class CategoryMock : ICategoryRepository
         };
     }
 
-    public void createNewCategory(string _name)
+    public void CreateNewCategory(string _name)
     {
         _categories.Add(new CategoryModel{name = _name});
     }
 
-    public List<string> getAllCategoriesNames()
+    public List<string> GetAllCategoriesNames()
     {
         var categoriesNames = new List<string>();
 

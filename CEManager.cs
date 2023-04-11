@@ -4,52 +4,52 @@ using CEM.Models;
 using System.Collections.Generic;
 public class CEManager
 {
-    public ITransactionRepository transactionDataAccess; 
-    private ICategoryRepository categoryDataAccess; 
-    private RequestType requestType;
-    private Dictionary<string, string> transactionData;
+    public ITransactionRepository TransactionDataAccess {get;set;} 
+    private ICategoryRepository _categoryDataAccess; 
+    private readonly RequestType _requestType;
+    private readonly Dictionary<string, string> _transactionData;
 
     public CEManager
     (
-        ITransactionRepository _incomeDataAccess, 
-        ICategoryRepository _categoryDataAccess, 
-        RequestType _requestType, 
-        Dictionary<string, string> _transactionData
+        ITransactionRepository transactionDataAccess,
+        ICategoryRepository categoryDataAccess, 
+        RequestType requestType, 
+        Dictionary<string, string> transactionData
     )
     {
-        transactionDataAccess = _incomeDataAccess;
-        categoryDataAccess = _categoryDataAccess;
-        requestType = _requestType;
-        transactionData =  _transactionData;
+        TransactionDataAccess = transactionDataAccess;
+        _categoryDataAccess = categoryDataAccess;
+        _requestType = requestType;
+        _transactionData =  transactionData;
     }
 
-    public void makeTransaction()
+    public void MakeTransaction()
     {
-        tryCreateCategory();
-        transactionDataAccess.addTransaction
+        TryCreateCategory();
+        TransactionDataAccess.AddTransaction
         (
-            transactionData["description"],
-            float.Parse(transactionData["value"]),
-            requestType,
-            transactionData["category"]
+            _transactionData["description"],
+            float.Parse(_transactionData["value"]),
+            _requestType,
+            _transactionData["category"]
         );   
     }
 
-    private void tryCreateCategory()
+    private void TryCreateCategory()
     {
-        if (categoryAlreadyExist() == false)
+        if (CategoryAlreadyExist() == false)
         {
-            categoryDataAccess.createNewCategory(transactionData["category"]);
+            _categoryDataAccess.CreateNewCategory(_transactionData["category"]);
         }
     }
 
-    private bool categoryAlreadyExist()
+    private bool CategoryAlreadyExist()
     {
-        List<string> allCategories = categoryDataAccess.getAllCategoriesNames();
+        List<string> allCategories = _categoryDataAccess.GetAllCategoriesNames();
         
-        for (int cat = 0; cat < allCategories.Count ; cat++)
+        for (int category = 0; category < allCategories.Count ; category++)
         {
-            if (allCategories[cat] == transactionData["category"])
+            if (allCategories[category] == _transactionData["category"])
             {
                 return true;
             }

@@ -20,7 +20,7 @@ public class CEManagerTests
     }
     
     [Test]
-    public void createTransactionInNewCategoryTest()
+    public void CreateTransactionInNewCategoryTest()
     {  
         var transactionData = new Dictionary<string, string>()
         {
@@ -28,10 +28,10 @@ public class CEManagerTests
             {"description", "transactionDescription"},
             {"value", "1000"},
         };
-        CEManager manager = createCEManager(RequestType.Income, transactionData);
+        CEManager manager = CreateCEManager(RequestType.Income, transactionData);
         
 
-        manager.makeTransaction();
+        manager.MakeTransaction();
 
 
         List<TransactionModel> transactionsExpected = new List<TransactionModel>
@@ -43,18 +43,18 @@ public class CEManagerTests
                 CategoryID = "NewCategory"}
         };
 
-        List<TransactionModel> transactionsReceived = manager.transactionDataAccess.
-            getAllTransactionsByTypeAndCategoryID(
+        List<TransactionModel> transactionsReceived = manager.TransactionDataAccess.
+            GetAllTransactionsByTypeAndCategoryID(
                 RequestType.Income, transactionData["category"]
             );
 
-        var totalDataExpected = getDataFromAllTransactions(transactionsExpected);
-        var totalDataReceived = getDataFromAllTransactions(transactionsReceived);
+        var totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
+        var totalDataReceived = GetDataFromAllTransactions(transactionsReceived);
 
         Assert.That(totalDataReceived, Is.EquivalentTo(totalDataExpected));
     }
-    
-    private ArrayList getDataFromAllTransactions(List<TransactionModel> transactions)
+ 
+    private ArrayList GetDataFromAllTransactions(List<TransactionModel> transactions)
     {
         var allData = new ArrayList();
 
@@ -67,7 +67,7 @@ public class CEManagerTests
         return allData;
     }
 
-    private CEManager createCEManager(RequestType _requestType, Dictionary<string,string> _transactionData)
+    private CEManager CreateCEManager(RequestType _requestType, Dictionary<string,string> _transactionData)
     {
         ITransactionRepository transactionMock = new TransactionMock();
         CategoryMock categoryMock = new CategoryMock();

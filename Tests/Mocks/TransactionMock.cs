@@ -34,7 +34,7 @@ public class TransactionMock : ITransactionRepository
         };
     }
 
-    public void addTransaction(string _description, float _amount, RequestType _transactionType, string _CategoryID)
+    public void AddTransaction(string _description, float _amount, RequestType _transactionType, string _CategoryID)
     {
         _transactions.Add(
             new TransactionModel{
@@ -46,7 +46,7 @@ public class TransactionMock : ITransactionRepository
         );
     }
 
-    public List<TransactionModel> getAllTransactionsByTypeAndCategoryID(RequestType _transactionType, string _categoryID)
+    public List<TransactionModel> GetAllTransactionsByTypeAndCategoryID(RequestType _transactionType, string _categoryID)
     {
         List<TransactionModel> transactionsByTypeAndCategoryID = _transactions.Where
             (
