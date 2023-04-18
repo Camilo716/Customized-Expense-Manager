@@ -4,27 +4,20 @@ namespace CEM.Util;
 
 public class ConsoleRequestHandler
 {
-    private string[] receivedArgs;
-    private Dictionary<string, string> transactionData = new Dictionary<string, string>()
-    {
-        {"category", ""},{"description", ""},{"value", ""},
-    };
+    private string[] _receivedArgs;
+    private ITransactionData _transactionData;
     private RequestType requestType = RequestType.Invalid;
 
-    public ConsoleRequestHandler(string[] _args)
+    public ConsoleRequestHandler(string[] args)
     {
-        receivedArgs = _args;
+        _receivedArgs = args;
+        _transactionData = new TransactionData();
     }
 
     public RequestType getRequestType()
     {
         processRequest();
         return requestType;
-    }
-
-    public Dictionary<string,string> getTransactionData()
-    {
-        return transactionData;
     }
 
     private void processRequest()
@@ -37,7 +30,7 @@ public class ConsoleRequestHandler
 
     private bool ArgumentsOK()
     {
-        bool invalidArguments = receivedArgs.Length != 4;
+        bool invalidArguments = _receivedArgs.Length != 4;
 
         if (invalidArguments)
         {
@@ -49,7 +42,7 @@ public class ConsoleRequestHandler
 
     private bool RequestOK()
     {
-        switch (receivedArgs[0])
+        switch (_receivedArgs[0])
         {
             case "--expense":
                 requestType = RequestType.Expense;
@@ -67,9 +60,7 @@ public class ConsoleRequestHandler
 
     private void setValues()
     {
-        transactionData["category"] = receivedArgs[1];
-        transactionData["description"] = receivedArgs[2];
-        transactionData["value"] = receivedArgs[3]; 
+        _transactionData.setData(_receivedArgs[1], _receivedArgs[2], _receivedArgs[3]);
     }
 
 }
