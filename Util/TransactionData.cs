@@ -3,7 +3,12 @@ using System.Collections.Generic;
 namespace CEM.Util;
 
 public class TransactionData : ITransactionData
-{
+{   
+    private RequestType _requestType = RequestType.Invalid;
+    private string _category;
+    private string _description;
+    private float amount; 
+
     private Dictionary<string, string> _transactionData = new Dictionary<string, string>()
     {
         {"category", ""},
@@ -11,7 +16,7 @@ public class TransactionData : ITransactionData
         {"value", ""},
     };
 
-    public Dictionary<string, string> getTransactionData()
+    public Dictionary<string, string> getTransData()
     {
         return _transactionData;
     }
@@ -22,10 +27,22 @@ public class TransactionData : ITransactionData
         _transactionData["description"] = description;
         _transactionData["value"] = value;
     }
+
+    public void SetRequestType(RequestType requestType)
+    {
+        _requestType = requestType;
+    }
+
+    public RequestType getRequestType()
+    {
+        return _requestType;
+    }
 }
 
 public interface ITransactionData
 {
-    Dictionary<string,string> getTransactionData();
+    Dictionary<string,string> getTransData();
     void setData(string category, string description, string value);
+    void SetRequestType(RequestType requestType);
+    RequestType getRequestType();
 }

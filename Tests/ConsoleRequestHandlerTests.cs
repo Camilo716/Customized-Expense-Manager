@@ -13,49 +13,54 @@ public class ConsoleRequestHandlerTests
     [Test]
     public void validateExpenseRequest()
     {
-        string[] incomeArgs = new string[]{
+        string[] expenseArgs = new string[]{
             "--expense",
             "eCategory",
             "eDescription",
             "100",
         };
-        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+        var requestHandler = new ConsoleRequestHandler(expenseArgs);
 
-        var operationType = requestAnalizer.getRequestType();
+        requestHandler.processRequest();
 
+        ITransactionData transactionData = requestHandler.getTransactionData();        
+        var operationType = transactionData.getRequestType();
         Assert.That(operationType, Is.EqualTo(RequestType.Expense));
     }
 
     [Test]
     public void validateIncomeRequest()
     {
-        string[] incomeArgs = new string[]{
+        string[] expenseArgs = new string[]{
             "--income",
             "InCategory",
             "InDescription",
             "100"
         };
+        var requestHandler = new ConsoleRequestHandler(expenseArgs);
 
-        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+        requestHandler.processRequest();
 
-        var operationType = requestAnalizer.getRequestType();
-
+        ITransactionData transactionData = requestHandler.getTransactionData();        
+        var operationType = transactionData.getRequestType();
         Assert.That(operationType, Is.EqualTo(RequestType.Income));
     }
 
     [Test]
     public void invalidRequestTest()
     {  
-        string[] incomeArgs = new string[]{
+        string[] invalidRequest = new string[]{
             "InvalidRequest",
             "Category",
             "Description",
             "100"
         };
+        var requestHandler = new ConsoleRequestHandler(invalidRequest);
 
-        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+        requestHandler.processRequest();
 
-        var operationType = requestAnalizer.getRequestType();
+        ITransactionData transactionData = requestHandler.getTransactionData();        
+        var operationType = transactionData.getRequestType();
 
         Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
     }
@@ -63,16 +68,19 @@ public class ConsoleRequestHandlerTests
     [Test]
     public void invalidArgumentsTest()
     {  
-        string[] incomeArgs = new string[]{
+        string[] invalidArgs = new string[]{
             "--income",
             "eCategory",
             "eDescription",
         };
+        var requestHandler = new ConsoleRequestHandler(invalidArgs);
 
-        var requestAnalizer = new ConsoleRequestHandler(incomeArgs);
+        requestHandler.processRequest();
 
-        var operationType = requestAnalizer.getRequestType();
+        ITransactionData transactionData = requestHandler.getTransactionData();        
+        var operationType = transactionData.getRequestType();
 
         Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
     }
+
 }

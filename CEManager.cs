@@ -4,7 +4,7 @@ using CEM.Models;
 using System.Collections.Generic;
 public class CEManager
 {
-    public ITransactionRepository TransactionDataAccess {get;set;} 
+    public ITransactionRepository _transactionDataAccess {get;set;} 
     private ICategoryRepository _categoryDataAccess; 
     private readonly RequestType _requestType;
     private readonly Dictionary<string, string> _transactionData;
@@ -13,11 +13,11 @@ public class CEManager
     (
         ITransactionRepository transactionDataAccess,
         ICategoryRepository categoryDataAccess, 
-        RequestType requestType, 
+        RequestType requestType,
         Dictionary<string, string> transactionData
     )
     {
-        TransactionDataAccess = transactionDataAccess;
+        _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;
         _requestType = requestType;
         _transactionData =  transactionData;
@@ -26,7 +26,7 @@ public class CEManager
     public void MakeTransaction()
     {
         TryCreateCategory();
-        TransactionDataAccess.AddTransaction
+        _transactionDataAccess.AddTransaction
         (
             _transactionData["description"],
             float.Parse(_transactionData["value"]),

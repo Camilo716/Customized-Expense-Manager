@@ -22,13 +22,11 @@ public class CEManagerTests
     [Test]
     public void CreateTransactionInNewCategoryTest()
     {  
-        var transactionData = new Dictionary<string, string>()
-        {
-            {"category", "NewCategory"},
-            {"description", "transactionDescription"},
-            {"value", "1000"},
-        };
-        CEManager manager = CreateCEManager(RequestType.Income, transactionData);
+        ITransactionData transactionData1 = new TransactionData();
+        transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
+        Dictionary<string, string> data =  transactionData1.getTransData();
+
+        CEManager manager = CreateCEManager(RequestType.Income, data);
         
 
         manager.MakeTransaction();
@@ -36,20 +34,22 @@ public class CEManagerTests
 
         List<TransactionModel> transactionsExpected = new List<TransactionModel>
         {
-            new TransactionModel{
+            new TransactionModel
+            {
                 description = "transactionDescription",
                 amount = 1000,
                 transactionType = RequestType.Income,
-                CategoryID = "NewCategory"}
+                CategoryID = "NewCategory"
+            }
         };
 
-        List<TransactionModel> transactionsReceived = manager.TransactionDataAccess.
+        List<TransactionModel> transactionsReceived = manager._transactionDataAccess.
             GetAllTransactionsByTypeAndCategoryID(
-                RequestType.Income, transactionData["category"]
+                RequestType.Income, data["category"]
             );
 
-        var totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
-        var totalDataReceived = GetDataFromAllTransactions(transactionsReceived);
+        ArrayList totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
+        ArrayList totalDataReceived = GetDataFromAllTransactions(transactionsReceived);
 
         Assert.That(totalDataReceived, Is.EquivalentTo(totalDataExpected));
     }
@@ -75,4 +75,5 @@ public class CEManagerTests
 
         return manager;
     }
+
 }

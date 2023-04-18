@@ -4,9 +4,8 @@ namespace CEM.Util;
 
 public class ConsoleRequestHandler
 {
-    private string[] _receivedArgs;
+    private readonly string[] _receivedArgs;
     private ITransactionData _transactionData;
-    private RequestType requestType = RequestType.Invalid;
 
     public ConsoleRequestHandler(string[] args)
     {
@@ -14,13 +13,12 @@ public class ConsoleRequestHandler
         _transactionData = new TransactionData();
     }
 
-    public RequestType getRequestType()
+    public ITransactionData getTransactionData()
     {
-        processRequest();
-        return requestType;
+        return _transactionData;
     }
 
-    private void processRequest()
+    public void processRequest()
     {
         if (ArgumentsOK() && RequestOK())
         {
@@ -45,11 +43,11 @@ public class ConsoleRequestHandler
         switch (_receivedArgs[0])
         {
             case "--expense":
-                requestType = RequestType.Expense;
+                _transactionData.SetRequestType(RequestType.Expense);
                 return true;
     
             case "--income":
-                requestType = RequestType.Income;
+                _transactionData.SetRequestType(RequestType.Income);
                 return true;
 
             default:
@@ -57,10 +55,8 @@ public class ConsoleRequestHandler
         }
     }
 
-
     private void setValues()
     {
         _transactionData.setData(_receivedArgs[1], _receivedArgs[2], _receivedArgs[3]);
     }
-
 }
