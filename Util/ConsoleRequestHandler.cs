@@ -2,13 +2,6 @@ using System.Collections.Generic;
 
 namespace CEM.Util;
 
-public enum RequestType{
-    Expense,
-    Income,
-    Report,
-    Invalid,
-}
-
 public class ConsoleRequestHandler
 {
     private string[] receivedArgs;
