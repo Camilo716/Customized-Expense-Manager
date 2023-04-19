@@ -7,25 +7,13 @@ public class TransactionData : ITransactionData
     private RequestType _requestType = RequestType.Invalid;
     private string _category;
     private string _description;
-    private float amount; 
+    private string _amount; 
 
-    private Dictionary<string, string> _transactionData = new Dictionary<string, string>()
+    public void setData(string category, string description,  string amount)
     {
-        {"category", ""},
-        {"description", ""},
-        {"value", ""},
-    };
-
-    public Dictionary<string, string> getTransData()
-    {
-        return _transactionData;
-    }
-
-    public void setData(string category, string description, string value)
-    {
-        _transactionData["category"] = category;
-        _transactionData["description"] = description;
-        _transactionData["value"] = value;
+        _category = category;
+        _description = description;
+        _amount = amount;
     }
 
     public void SetRequestType(RequestType requestType)
@@ -37,12 +25,29 @@ public class TransactionData : ITransactionData
     {
         return _requestType;
     }
+
+    public string GetCategory()
+    {
+        return _category;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
+
+    public string GetAmount()
+    {
+        return _amount;
+    }
 }
 
 public interface ITransactionData
-{
-    Dictionary<string,string> getTransData();
+{  
     void setData(string category, string description, string value);
     void SetRequestType(RequestType requestType);
+    string GetCategory();
+    string GetDescription();
+    string GetAmount();
     RequestType getRequestType();
 }

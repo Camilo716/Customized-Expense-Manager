@@ -24,13 +24,12 @@ public class CEManagerTests
     {  
         ITransactionData transactionData1 = new TransactionData();
         transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
-        Dictionary<string, string> data =  transactionData1.getTransData();
+        transactionData1.SetRequestType(RequestType.Income);
 
-        CEManager manager = CreateCEManager(RequestType.Income, data);
+        CEManager manager = CreateCEManager(RequestType.Income, transactionData1);
         
 
         manager.MakeTransaction();
-
 
         List<TransactionModel> transactionsExpected = new List<TransactionModel>
         {
@@ -45,7 +44,7 @@ public class CEManagerTests
 
         List<TransactionModel> transactionsReceived = manager._transactionDataAccess.
             GetAllTransactionsByTypeAndCategoryID(
-                RequestType.Income, data["category"]
+                RequestType.Income, manager._data.GetCategory()
             );
 
         ArrayList totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
@@ -67,11 +66,11 @@ public class CEManagerTests
         return allData;
     }
 
-    private CEManager CreateCEManager(RequestType _requestType, Dictionary<string,string> _transactionData)
+    private CEManager CreateCEManager(RequestType requestType, ITransactionData transactionData)
     {
         ITransactionRepository transactionMock = new TransactionMock();
-        CategoryMock categoryMock = new CategoryMock();
-        CEManager manager = new CEManager(transactionMock, categoryMock, _requestType, _transactionData);
+        ICategoryRepository categoryMock = new CategoryMock();
+        CEManager manager = new CEManager(transactionMock, categoryMock, transactionData);
 
         return manager;
     }

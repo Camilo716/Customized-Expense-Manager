@@ -10,7 +10,7 @@ using System.Linq;
 public class TransactionMock : ITransactionRepository
 {
     private List<TransactionModel> _transactions;
-    
+
     
     public TransactionMock()
     {
@@ -48,9 +48,10 @@ public class TransactionMock : ITransactionRepository
 
     public List<TransactionModel> GetAllTransactionsByTypeAndCategoryID(RequestType _transactionType, string _categoryID)
     {
-        List<TransactionModel> transactionsByTypeAndCategoryID = _transactions.Where
+        List<TransactionModel> transactionsByTypeAndCategoryID = _transactions
+            .Where
             (
-            transaction=>transaction.transactionType == _transactionType && transaction.CategoryID == _categoryID 
+                transaction=>transaction.transactionType == _transactionType && transaction.CategoryID == _categoryID 
             ).ToList();
 
         return transactionsByTypeAndCategoryID;

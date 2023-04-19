@@ -6,21 +6,18 @@ public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
     private ICategoryRepository _categoryDataAccess; 
-    private readonly RequestType _requestType;
-    private readonly Dictionary<string, string> _transactionData;
+    public readonly ITransactionData _data;
 
     public CEManager
     (
         ITransactionRepository transactionDataAccess,
         ICategoryRepository categoryDataAccess, 
-        RequestType requestType,
-        Dictionary<string, string> transactionData
+        ITransactionData transactionData
     )
     {
         _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;
-        _requestType = requestType;
-        _transactionData =  transactionData;
+        _data = transactionData;
     }
 
     public void MakeTransaction()
@@ -28,18 +25,18 @@ public class CEManager
         TryCreateCategory();
         _transactionDataAccess.AddTransaction
         (
-            _transactionData["description"],
-            float.Parse(_transactionData["value"]),
-            _requestType,
-            _transactionData["category"]
+            _data.GetDescription(),
+            float.Parse(_data.GetAmount()),
+            _data.getRequestType(),
+            _data.GetCategory()
         );   
     }
 
     private void TryCreateCategory()
     {
-        if (CategoryAlreadyExist() == false)
+        if (!CategoryAlreadyExist())
         {
-            _categoryDataAccess.CreateNewCategory(_transactionData["category"]);
+            _categoryDataAccess.CreateNewCategory(_data.GetCategory());
         }
     }
 
@@ -49,7 +46,7 @@ public class CEManager
         
         for (int category = 0; category < allCategories.Count ; category++)
         {
-            if (allCategories[category] == _transactionData["category"])
+            if (allCategories[category] == _data.GetCategory())
             {
                 return true;
             }
