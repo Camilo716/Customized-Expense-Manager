@@ -22,6 +22,7 @@ public class CEManagerTests
     [Test]
     public void CreateTransactionInNewCategoryTest()
     {  
+        //Arrange
         ITransactionData transactionData1 = new TransactionData();
         transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
         transactionData1.SetRequestType(RequestType.Income);
@@ -29,8 +30,11 @@ public class CEManagerTests
         CEManager manager = CreateCEManager(RequestType.Income, transactionData1);
         
 
+        //Act
         manager.MakeTransaction();
 
+
+        // Assert
         List<TransactionModel> transactionsExpected = new List<TransactionModel>
         {
             new TransactionModel
@@ -52,7 +56,7 @@ public class CEManagerTests
 
         Assert.That(totalDataReceived, Is.EquivalentTo(totalDataExpected));
     }
- 
+
     private ArrayList GetDataFromAllTransactions(List<TransactionModel> transactions)
     {
         var allData = new ArrayList();

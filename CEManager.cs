@@ -2,6 +2,7 @@ using CEM.Repositories;
 using CEM.Util;
 using CEM.Models;
 using System.Collections.Generic;
+
 public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
@@ -31,6 +32,8 @@ public class CEManager
             _data.GetCategory()
         );   
     }
+
+    
 
     private void TryCreateCategory()
     {

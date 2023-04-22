@@ -15,7 +15,7 @@ public class CategoryMock : ICategoryRepository
         {
             new CategoryModel{name = "Entertaiment"},
             new CategoryModel{name = "Education"},
-            new CategoryModel{name = "Transporte"}
+            new CategoryModel{name = "Transport"}
         };
     }
 
