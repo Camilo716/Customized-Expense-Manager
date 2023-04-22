@@ -14,7 +14,24 @@ public class DbCemContext : DbContext
     {
         modelBuilder.Entity<CategoryModel>(category =>
         {
-            
+            category.HasKey(c => c.name);
+            // base.OnModelCreating(modelBuilder);
+
+            // modelBuilder.Entity<CategoryModel>()
+            // .HasKey(c => c.name);
+
+            // modelBuilder.Entity<CategoryModel>()
+            // .HasMany(c => c.transactionsInCategory)
+            // .WithOne(t => t.categoryOfTransaction)
+            // .HasForeignKey(t => t.CategoryID)
+            // .IsRequired();
+        });
+
+        modelBuilder.Entity<TransactionModel>(transction =>
+        {
+            transction.HasKey(t => t.transactionID);
+
+            //transction.HasOne(c => c.CategoryOfTransaction).WithMany(t => t.)
         });
     }
 

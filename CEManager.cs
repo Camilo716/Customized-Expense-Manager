@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
-    private ICategoryRepository _categoryDataAccess; 
+    public ICategoryRepository _categoryDataAccess; 
     public readonly ITransactionData _data;
 
     public CEManager
@@ -29,11 +29,11 @@ public class CEManager
             _data.GetDescription(),
             float.Parse(_data.GetAmount()),
             _data.getRequestType(),
-            _data.GetCategory()
+            _categoryDataAccess.GetCategoryByName(_data.GetCategory())
         );   
     }
 
-    
+
 
     private void TryCreateCategory()
     {
@@ -45,15 +45,16 @@ public class CEManager
 
     private bool CategoryAlreadyExist()
     {
-        List<string> allCategories = _categoryDataAccess.GetAllCategoriesNames();
+        List<CategoryModel> allCategories = _categoryDataAccess.GetAllCategories();
         
         for (int category = 0; category < allCategories.Count ; category++)
         {
-            if (allCategories[category] == _data.GetCategory())
+            if (allCategories[category].name == _data.GetCategory())
             {
                 return true;
             }
         }
+
         return false;
     }
 }

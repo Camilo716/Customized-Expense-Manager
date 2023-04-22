@@ -9,5 +9,5 @@ public class TransactionModel
     public string description {get;set;}
     public float amount {get;set;}
     public RequestType transactionType{get;set;}
-    public  virtual string CategoryID {get;set;}
+    public  virtual CategoryModel CategoryOfTransaction {get;set;}
 }

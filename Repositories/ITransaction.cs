@@ -6,6 +6,6 @@ using System.Collections.Generic;
 
 public interface ITransactionRepository
 {
-    void AddTransaction(string description, float amount, RequestType transactionType, string CategoryID);
-    List<TransactionModel> GetAllTransactionsByTypeAndCategoryID(RequestType transactionType, string categoryID);
+    void AddTransaction(string description, float amount, RequestType transactionType, CategoryModel category);
+    List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType transactionType, CategoryModel category);
 }

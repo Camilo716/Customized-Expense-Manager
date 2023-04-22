@@ -42,13 +42,13 @@ public class CEManagerTests
                 description = "transactionDescription",
                 amount = 1000,
                 transactionType = RequestType.Income,
-                CategoryID = "NewCategory"
+                CategoryOfTransaction = new CategoryModel(){name = "NewCategory"}
             }
         };
 
         List<TransactionModel> transactionsReceived = manager._transactionDataAccess.
-            GetAllTransactionsByTypeAndCategoryID(
-                RequestType.Income, manager._data.GetCategory()
+            GetAllTransactionsByTypeAndCategory(
+                RequestType.Income, manager._categoryDataAccess.GetCategoryByName(manager._data.GetCategory())
             );
 
         ArrayList totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
@@ -64,7 +64,7 @@ public class CEManagerTests
         for (int i = 0; i < transactions.Count; i++)
         {
             allData.Add(transactions[i].description);
-            allData.Add(transactions[i].CategoryID);  
+            allData.Add(transactions[i].CategoryOfTransaction.name);  
         }
 
         return allData;

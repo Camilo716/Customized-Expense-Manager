@@ -11,9 +11,13 @@ public class TransactionMock : ITransactionRepository
 {
     private List<TransactionModel> _transactions;
 
-    
+    private List<CategoryModel> _categoryModels;
+
     public TransactionMock()
     {
+        ICategoryRepository categoryMock = new CategoryMock();
+        _categoryModels = categoryMock.GetAllCategories();
+
         _transactions = new List<TransactionModel>
         {
             new TransactionModel
@@ -21,7 +25,7 @@ public class TransactionMock : ITransactionRepository
                 transactionID = Guid.NewGuid(), 
                 description = "Fuel", amount = 500, 
                 transactionType = RequestType.Expense, 
-                CategoryID = "Transport"
+                CategoryOfTransaction = _categoryModels[2] // Transport
             },
             new TransactionModel
             {
@@ -29,29 +33,29 @@ public class TransactionMock : ITransactionRepository
                 description = "Courses", 
                 amount = 500,
                 transactionType = RequestType.Income, 
-                CategoryID = "Education"
+                CategoryOfTransaction = _categoryModels[1] // Education
             }
         };
     }
 
-    public void AddTransaction(string _description, float _amount, RequestType _transactionType, string _CategoryID)
+    public void AddTransaction(string description, float amount, RequestType transactionType, CategoryModel category)
     {
         _transactions.Add(
             new TransactionModel{
-                description = _description, 
-                amount = _amount,
-                transactionType = _transactionType,
-                CategoryID = _CategoryID
+                description = description, 
+                amount = amount,
+                transactionType = transactionType,
+                CategoryOfTransaction = category
             }
         );
     }
 
-    public List<TransactionModel> GetAllTransactionsByTypeAndCategoryID(RequestType _transactionType, string _categoryID)
+    public List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType transactionType, CategoryModel category)
     {
         List<TransactionModel> transactionsByTypeAndCategoryID = _transactions
             .Where
             (
-                transaction=>transaction.transactionType == _transactionType && transaction.CategoryID == _categoryID 
+                transaction=>transaction.transactionType == transactionType && transaction.CategoryOfTransaction.name == category.name 
             ).ToList();
 
         return transactionsByTypeAndCategoryID;

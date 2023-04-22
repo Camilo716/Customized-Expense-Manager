@@ -3,6 +3,7 @@ namespace CEM.Tests.Mocks;
 using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CategoryMock : ICategoryRepository
 {
@@ -24,15 +25,23 @@ public class CategoryMock : ICategoryRepository
         _categories.Add(new CategoryModel{name = _name});
     }
 
-    public List<string> GetAllCategoriesNames()
+    public List<CategoryModel> GetAllCategories()
     {
-        var categoriesNames = new List<string>();
+        List<CategoryModel> categories = new List<CategoryModel>(); 
 
         for (int categ = 0; categ < _categories.Count; categ++)
         {
-            categoriesNames.Add(_categories[categ].name);
+            categories.Add(_categories[categ]);
         }
 
-        return categoriesNames;
+        return categories;
+    }
+
+    public CategoryModel GetCategoryByName(string name)
+    {
+        CategoryModel? category = _categories
+            .SingleOrDefault(c => c.name == name);
+        
+        return category;
     }
 }

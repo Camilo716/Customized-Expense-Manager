@@ -5,5 +5,6 @@ using System.Collections.Generic;
 public interface ICategoryRepository
 {
     void CreateNewCategory(string name);
-    List<string> GetAllCategoriesNames();
+    List<CategoryModel> GetAllCategories();
+    CategoryModel GetCategoryByName(string categoryName);
 }

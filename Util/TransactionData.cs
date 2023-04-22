@@ -8,7 +8,7 @@ public class TransactionData : ITransactionData
     private string? _category;
     private string? _description;
     private string? _amount; 
-
+    
     public void setData(string category, string description,  string amount)
     {
         _category = category;
