@@ -7,22 +7,22 @@ public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
     public ICategoryRepository _categoryDataAccess; 
-    public readonly ITransactionData _data;
+    public ITransactionData _data;
 
     public CEManager
     (
         ITransactionRepository transactionDataAccess,
-        ICategoryRepository categoryDataAccess, 
-        ITransactionData transactionData
+        ICategoryRepository categoryDataAccess
     )
     {
         _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;
-        _data = transactionData;
     }
 
-    public void MakeTransaction()
+    public void MakeTransaction(ITransactionData transactionData)
     {
+        _data = transactionData;
+
         TryCreateCategory();
         _transactionDataAccess.AddTransaction
         (
@@ -32,8 +32,6 @@ public class CEManager
             _categoryDataAccess.GetCategoryByName(_data.GetCategory())
         );   
     }
-
-
 
     private void TryCreateCategory()
     {

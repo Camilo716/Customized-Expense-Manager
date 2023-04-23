@@ -26,12 +26,11 @@ public class CEManagerTests
         ITransactionData transactionData1 = new TransactionData();
         transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
         transactionData1.SetRequestType(RequestType.Income);
-
-        CEManager manager = CreateCEManager(RequestType.Income, transactionData1);
+        CEManager manager = CreateCEManager();
         
 
         //Act
-        manager.MakeTransaction();
+        manager.MakeTransaction(transactionData1);
 
 
         // Assert
@@ -64,17 +63,17 @@ public class CEManagerTests
         for (int i = 0; i < transactions.Count; i++)
         {
             allData.Add(transactions[i].description);
-            allData.Add(transactions[i].CategoryOfTransaction.name);  
+            allData.Add(transactions[i].CategoryOfTransaction.name); 
         }
 
         return allData;
     }
-
-    private CEManager CreateCEManager(RequestType requestType, ITransactionData transactionData)
+    
+    private CEManager CreateCEManager()
     {
         ITransactionRepository transactionMock = new TransactionMock();
         ICategoryRepository categoryMock = new CategoryMock();
-        CEManager manager = new CEManager(transactionMock, categoryMock, transactionData);
+        CEManager manager = new CEManager(transactionMock, categoryMock);
 
         return manager;
     }
