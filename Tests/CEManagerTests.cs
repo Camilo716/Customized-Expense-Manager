@@ -21,7 +21,7 @@ public class CEManagerTests
     
     [Test]
     public void CreateTransactionInNewCategoryTest()
-    {  
+    {
         //Arrange
         ITransactionData transactionData1 = new TransactionData();
         transactionData1.setData("NewCategory" ,"transactionDescription", "1000");

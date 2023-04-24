@@ -39,7 +39,7 @@ public class CategoryMock : ICategoryRepository
 
     public CategoryModel GetCategoryByName(string name)
     {
-        CategoryModel? category = _categories
+        var category = _categories
             .SingleOrDefault(c => c.name == name);
         
         return category;
