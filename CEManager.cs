@@ -9,11 +9,7 @@ public class CEManager
     public ICategoryRepository _categoryDataAccess; 
     public ITransactionData _data;
 
-    public CEManager
-    (
-        ITransactionRepository transactionDataAccess,
-        ICategoryRepository categoryDataAccess
-    )
+    public CEManager(ITransactionRepository transactionDataAccess, ICategoryRepository categoryDataAccess)
     {
         _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;

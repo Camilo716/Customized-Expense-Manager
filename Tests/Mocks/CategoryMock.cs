@@ -1,9 +1,9 @@
-namespace CEM.Tests.Mocks;
-
 using CEM.Repositories;
 using CEM.Models;
 using System.Collections.Generic;
 using System.Linq;
+
+namespace CEM.Tests.Mocks;
 
 public class CategoryMock : ICategoryRepository
 {

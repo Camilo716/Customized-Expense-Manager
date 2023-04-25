@@ -5,15 +5,15 @@ namespace CEM.Util;
 public class TransactionData : ITransactionData
 {   
     private RequestType _requestType = RequestType.Invalid;
-    private string _category = "";
-    private string _description = "";
-    private string _amount = ""; 
+    private string _category;
+    private string _Description;
+    private string _Amount; 
     
-    public void setData(string category, string description,  string amount)
+    public void setData(string category, string Description,  string Amount)
     {
         _category = category;
-        _description = description;
-        _amount = amount;
+        _Description = Description;
+        _Amount = Amount;
     }
 
     public void SetRequestType(RequestType requestType)
@@ -33,18 +33,18 @@ public class TransactionData : ITransactionData
 
     public string GetDescription()
     {
-        return _description;
+        return _Description;
     }
 
     public string GetAmount()
     {
-        return _amount;
+        return _Amount;
     }
 }
 
 public interface ITransactionData
 {  
-    void setData(string category, string description, string value);
+    void setData(string category, string Description, string value);
     void SetRequestType(RequestType requestType);
     string GetCategory();
     string GetDescription();

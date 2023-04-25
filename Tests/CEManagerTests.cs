@@ -10,7 +10,6 @@ using System.Linq;
 
 namespace CEM.Tests;
 
-
 public class CEManagerTests
 {
 
@@ -38,9 +37,9 @@ public class CEManagerTests
         {
             new TransactionModel
             {
-                description = "transactionDescription",
-                amount = 1000,
-                transactionType = RequestType.Income,
+                Description = "transactionDescription",
+                Amount = 1000,
+                TransactionType = RequestType.Income,
                 CategoryOfTransaction = new CategoryModel(){name = "NewCategory"}
             }
         };
@@ -62,7 +61,7 @@ public class CEManagerTests
 
         for (int i = 0; i < transactions.Count; i++)
         {
-            allData.Add(transactions[i].description);
+            allData.Add(transactions[i].Description);
             allData.Add(transactions[i].CategoryOfTransaction.name); 
         }
 

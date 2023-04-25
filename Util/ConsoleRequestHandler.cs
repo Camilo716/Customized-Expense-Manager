@@ -30,7 +30,7 @@ public class ConsoleRequestHandler
 
         if (invalidArguments)
         {
-            //Console.WriteLine($"Missing argument: --type <category> <description> <value>");
+            //Console.WriteLine($"Missing argument: --type <category> <Description> <value>");
             return false;
         }
         return true;

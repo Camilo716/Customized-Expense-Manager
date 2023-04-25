@@ -5,9 +5,12 @@ using System;
 
 public class TransactionModel
 {
-    public Guid transactionID {get;set;}
-    public string description {get;set;}
-    public float amount {get;set;}
-    public RequestType transactionType{get;set;}
+    public Guid TransactionID {get;set;}
+    public string CategoryID {get;set;}
+
+    public string Description {get;set;}
+    public float Amount {get;set;}
+    public RequestType TransactionType{get;set;}
+    
     public  virtual CategoryModel CategoryOfTransaction {get;set;}
 }

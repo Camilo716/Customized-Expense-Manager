@@ -1,11 +1,11 @@
-namespace CEM.Tests.Mocks;
-
 using CEM.Repositories;
 using CEM.Models;
 using CEM.Util;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+
+namespace CEM.Tests.Mocks;
 
 public class TransactionMock : ITransactionRepository
 {
@@ -22,40 +22,40 @@ public class TransactionMock : ITransactionRepository
         {
             new TransactionModel
             {
-                transactionID = Guid.NewGuid(), 
-                description = "Fuel", amount = 500, 
-                transactionType = RequestType.Expense, 
+                TransactionID = Guid.NewGuid(), 
+                Description = "Fuel", Amount = 500, 
+                TransactionType = RequestType.Expense, 
                 CategoryOfTransaction = _categoryModels[2] // Transport
             },
             new TransactionModel
             {
-                transactionID = Guid.NewGuid(), 
-                description = "Courses", 
-                amount = 500,
-                transactionType = RequestType.Income, 
+                TransactionID = Guid.NewGuid(), 
+                Description = "Courses", 
+                Amount = 500,
+                TransactionType = RequestType.Income, 
                 CategoryOfTransaction = _categoryModels[1] // Education
             }
         };
     }
 
-    public void AddTransaction(string description, float amount, RequestType transactionType, CategoryModel category)
+    public void AddTransaction(string Description, float Amount, RequestType TransactionType, CategoryModel category)
     {
         _transactions.Add(
             new TransactionModel{
-                description = description, 
-                amount = amount,
-                transactionType = transactionType,
+                Description = Description, 
+                Amount = Amount,
+                TransactionType = TransactionType,
                 CategoryOfTransaction = category
             }
         );
     }
 
-    public List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType transactionType, CategoryModel category)
+    public List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
     {
         List<TransactionModel> transactionsByTypeAndCategoryID = _transactions
             .Where
             (
-                transaction=>transaction.transactionType == transactionType && transaction.CategoryOfTransaction.name == category.name 
+                transaction=>transaction.TransactionType == TransactionType && transaction.CategoryOfTransaction.name == category.name 
             ).ToList();
 
         return transactionsByTypeAndCategoryID;
