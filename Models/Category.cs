@@ -4,7 +4,7 @@ namespace CEM.Models;
 
 public class CategoryModel
 {
-    public string name {get;set;}
+    public string Name {get;set;}
     
-    public virtual ICollection<TransactionModel> transactionsInCategory {get;set;}
+    public virtual ICollection<TransactionModel> TransactionsInCategory {get;set;}
 }

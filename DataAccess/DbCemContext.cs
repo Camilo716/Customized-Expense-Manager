@@ -15,10 +15,10 @@ public class DbCemContext : DbContext
 
         modelBuilder.Entity<CategoryModel>(category =>
         {
-            category.HasKey(c => c.name);
-            category.Property(e => e.name).IsRequired();
+            category.HasKey(c => c.Name);
+            category.Property(e => e.Name).IsRequired();
 
-            category.HasMany(c => c.transactionsInCategory)
+            category.HasMany(c => c.TransactionsInCategory)
                     .WithOne(t => t.CategoryOfTransaction)
                     .HasForeignKey(t => t.TransactionID)
                     .OnDelete(DeleteBehavior.Cascade);
@@ -33,7 +33,7 @@ public class DbCemContext : DbContext
             transaction.Property(t => t.TransactionType).IsRequired();
 
             transaction.HasOne(t => t.CategoryOfTransaction)
-                        .WithMany(c => c.transactionsInCategory)
+                        .WithMany(c => c.TransactionsInCategory)
                         .HasForeignKey(t => t.CategoryID);
         });
     }  

@@ -16,7 +16,7 @@ public class TransactionMock : ITransactionRepository
     public TransactionMock()
     {
         ICategoryRepository categoryMock = new CategoryMock();
-        _categoryModels = categoryMock.GetAllCategories();
+        _categoryModels = categoryMock.GetAllCategories().ToList();
 
         _transactions = new List<TransactionModel>
         {
@@ -50,12 +50,12 @@ public class TransactionMock : ITransactionRepository
         );
     }
 
-    public List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
+    public IEnumerable<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
     {
         List<TransactionModel> transactionsByTypeAndCategoryID = _transactions
             .Where
             (
-                transaction=>transaction.TransactionType == TransactionType && transaction.CategoryOfTransaction.name == category.name 
+                transaction=>transaction.TransactionType == TransactionType && transaction.CategoryOfTransaction.Name == category.Name 
             ).ToList();
 
         return transactionsByTypeAndCategoryID;

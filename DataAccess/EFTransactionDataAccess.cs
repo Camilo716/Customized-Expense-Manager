@@ -1,30 +1,40 @@
-// public class TransactionRepository : ITransactionRepository
-// {
-//     private readonly MyDbContext _dbContext;
+using CEM.Context;
+using CEM.Models;
+using CEM.Util;
+using CEM.Repositories;
 
-//     public TransactionRepository(MyDbContext dbContext)
-//     {
-//         _dbContext = dbContext;
-//     }
+using System.Collections.Generic;
+using System.Linq;
 
-//     public void AddTransaction(string Description, float Amount, RequestType TransactionType, CategoryModel category)
-//     {
-//         TransactionModel transaction = new TransactionModel
-//         {
-//             Description = Description,
-//             Amount = Amount,
-//             TransactionType = TransactionType,
-//             CategoryOfTransaction = category
-//         };
+namespace CEM.DataAccess;
 
-//         _dbContext.Transactions.Add(transaction);
-//         _dbContext.SaveChanges();
-//     }
+public class TransactionRepository : ITransactionRepository
+{
+    private readonly DbCemContext _dbContext;
 
-//     public List<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
-//     {
-//         List<TransactionModel> transactions = _dbContext.Transactions.Where(t => t.TransactionType == TransactionType && t.CategoryOfTransaction == category).ToList();
+    public TransactionRepository(DbCemContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
 
-//         return transactions;
-//     }
-// }
+    public void AddTransaction(string Description, float Amount, RequestType TransactionType, CategoryModel category)
+    {
+        TransactionModel transaction = new TransactionModel
+        {
+            Description = Description,
+            Amount = Amount,
+            TransactionType = TransactionType,
+            CategoryOfTransaction = category
+        };
+
+        _dbContext.Transactions.Add(transaction);
+        _dbContext.SaveChanges();
+    }
+
+    public IEnumerable<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
+    {
+        var transactions = _dbContext.Transactions.Where(t => t.TransactionType == TransactionType && t.CategoryOfTransaction == category);
+
+        return transactions;
+    }
+}

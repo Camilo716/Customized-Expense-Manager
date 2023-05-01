@@ -30,5 +30,6 @@ catch (Exception ex)
     // Agregar más lógica para manejar el error
 }
 
-// var requestHandler = new ConsoleRequestHandler(args);
+
+var requestHandler = new ConsoleRequestHandler(args);
 // var cemanager = new CEManager();

@@ -14,18 +14,18 @@ public class CategoryMock : ICategoryRepository
     {
         _categories = new List<CategoryModel>
         {
-            new CategoryModel{name = "Entertaiment"},
-            new CategoryModel{name = "Education"},
-            new CategoryModel{name = "Transport"}
+            new CategoryModel{Name = "Entertaiment"},
+            new CategoryModel{Name = "Education"},
+            new CategoryModel{Name = "Transport"}
         };
     }
 
     public void CreateNewCategory(string _name)
     {
-        _categories.Add(new CategoryModel{name = _name});
+        _categories.Add(new CategoryModel{Name = _name});
     }
 
-    public List<CategoryModel> GetAllCategories()
+    public IEnumerable<CategoryModel> GetAllCategories()
     {
         List<CategoryModel> categories = new List<CategoryModel>(); 
 
@@ -39,8 +39,7 @@ public class CategoryMock : ICategoryRepository
 
     public CategoryModel GetCategoryByName(string name)
     {
-        var category = _categories
-            .SingleOrDefault(c => c.name == name);
+        var category = _categories.SingleOrDefault(c => c.Name == name);
         
         return category;
     }

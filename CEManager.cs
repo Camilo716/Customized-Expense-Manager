@@ -2,6 +2,7 @@ using CEM.Repositories;
 using CEM.Util;
 using CEM.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CEManager
 {
@@ -39,11 +40,11 @@ public class CEManager
 
     private bool CategoryAlreadyExist()
     {
-        List<CategoryModel> allCategories = _categoryDataAccess.GetAllCategories();
+        List<CategoryModel> allCategories = _categoryDataAccess.GetAllCategories().ToList();
         
         for (int category = 0; category < allCategories.Count ; category++)
         {
-            if (allCategories[category].name == _data.GetCategory())
+            if (allCategories[category].Name == _data.GetCategory())
             {
                 return true;
             }
