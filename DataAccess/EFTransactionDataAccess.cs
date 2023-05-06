@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace CEM.DataAccess;
 
-public class TransactionRepository : ITransactionRepository
+public class EFTransactionDataAccess : ITransactionRepository
 {
     private readonly DbCemContext _dbContext;
 
-    public TransactionRepository(DbCemContext dbContext)
+    public EFTransactionDataAccess(DbCemContext dbContext)
     {
         _dbContext = dbContext;
     }
