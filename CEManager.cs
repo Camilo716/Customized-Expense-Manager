@@ -21,6 +21,7 @@ public class CEManager
         _data = transactionData;
 
         TryCreateCategory();
+        
         _transactionDataAccess.AddTransaction
         (
             _data.GetDescription(),

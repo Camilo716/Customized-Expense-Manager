@@ -7,4 +7,9 @@ public class CategoryModel
     public string Name {get;set;}
     
     public virtual ICollection<TransactionModel> TransactionsInCategory {get;set;}
+
+    public CategoryModel(string name)
+    {
+        Name = name;
+    }
 }

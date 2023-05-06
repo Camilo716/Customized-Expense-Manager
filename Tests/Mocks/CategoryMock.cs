@@ -14,15 +14,15 @@ public class CategoryMock : ICategoryRepository
     {
         _categories = new List<CategoryModel>
         {
-            new CategoryModel{Name = "Entertaiment"},
-            new CategoryModel{Name = "Education"},
-            new CategoryModel{Name = "Transport"}
+            new CategoryModel("Entertaiment"),
+            new CategoryModel("Education"),
+            new CategoryModel("Transport")
         };
     }
 
     public void CreateNewCategory(string _name)
     {
-        _categories.Add(new CategoryModel{Name = _name});
+        _categories.Add(new CategoryModel(_name));
     }
 
     public IEnumerable<CategoryModel> GetAllCategories()

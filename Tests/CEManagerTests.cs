@@ -40,7 +40,7 @@ public class CEManagerTests
                 Description = "transactionDescription",
                 Amount = 1000,
                 TransactionType = RequestType.Income,
-                CategoryOfTransaction = new CategoryModel(){Name = "NewCategory"}
+                CategoryOfTransaction = new CategoryModel("NewCategory")
             }
         };
 
