@@ -9,7 +9,6 @@ dotnet test
 ```
 -------------------------
 ## Manage your finances
-(Categories are created automatically)
 ### Add a New Expense
 ```
 dotnet run --expense <category> <description> <amount>
