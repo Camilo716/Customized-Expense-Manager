@@ -21,7 +21,7 @@ public class ConsoleRequestHandlerTests
         };
         var requestHandler = new ConsoleRequestHandler(expenseArgs);
 
-        requestHandler.ProcessRequest();
+        requestHandler.ValidateRequest();
 
         ITransactionData transactionData = requestHandler.GetTransactionData();        
         var operationType = transactionData.GetRequestType();
@@ -39,10 +39,10 @@ public class ConsoleRequestHandlerTests
         };
         var requestHandler = new ConsoleRequestHandler(expenseArgs);
 
-        requestHandler.ProcessRequest();
+        requestHandler.ValidateRequest();
 
         ITransactionData transactionData = requestHandler.GetTransactionData();        
-        var operationType = transactionData.GetRequestType();
+        RequestType operationType = transactionData.GetRequestType();
         Assert.That(operationType, Is.EqualTo(RequestType.Income));
     }
 
@@ -51,10 +51,14 @@ public class ConsoleRequestHandlerTests
     {
         string[] reportArgs = new string[]{
             "--report",
-            "InCategory",
-            "InDescription",
-            "100"
         };
+        var requestHandler = new ConsoleRequestHandler(reportArgs);
+
+        requestHandler.ValidateRequest();
+
+        ITransactionData transactionData = requestHandler.GetTransactionData();
+        RequestType operationType = transactionData.GetRequestType();
+        Assert.That(operationType, Is.EqualTo(RequestType.Report));       
     }
 
     [Test]
@@ -68,7 +72,7 @@ public class ConsoleRequestHandlerTests
         };
         var requestHandler = new ConsoleRequestHandler(invalidRequest);
 
-        requestHandler.ProcessRequest();
+        requestHandler.ValidateRequest();
 
         ITransactionData transactionData = requestHandler.GetTransactionData();        
         var operationType = transactionData.GetRequestType();
@@ -82,11 +86,11 @@ public class ConsoleRequestHandlerTests
         string[] invalidArgs = new string[]{
             "--income",
             "eCategory",
-            "eDescription",
+            "12341",
         };
         var requestHandler = new ConsoleRequestHandler(invalidArgs);
 
-        requestHandler.ProcessRequest();
+        requestHandler.ValidateRequest();
 
         ITransactionData transactionData = requestHandler.GetTransactionData();        
         var operationType = transactionData.GetRequestType();

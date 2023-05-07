@@ -26,7 +26,7 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
     var requestHandler = new ConsoleRequestHandler(args);
     var cemanager = new CEManager(transactionDataAccess, categoryDataAccess);
 
-    requestHandler.ProcessRequest();
+    requestHandler.ValidateRequest();
     ITransactionData transactionData = requestHandler.GetTransactionData();
 
     bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;

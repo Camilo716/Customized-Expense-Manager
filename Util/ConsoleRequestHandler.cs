@@ -4,6 +4,7 @@ public class ConsoleRequestHandler
 {
     private readonly string[] _receivedArgs;
     private ITransactionData _transactionData;
+    private RequestType _requestTypeUnchecked;
 
     public ConsoleRequestHandler(string[] args)
     {
@@ -16,29 +17,22 @@ public class ConsoleRequestHandler
         return _transactionData;
     }
 
-    public void ProcessRequest()
+    public void ValidateRequest()
     {
-        if (ArgumentsOK() && RequestOK())
+        if (RequestOK() & ArgumentsOK())
         {
-            setValues();
+            ProccessAcceptedRequest();
         }
-
-        // Console.WriteLine("Category: " + _transactionData.GetCategory());
-        // Console.WriteLine("Description: " + _transactionData.GetDescription());
-        // Console.WriteLine("Amount: " + _transactionData.GetAmount());
-        // Console.WriteLine("Type: " + _transactionData.GetRequestType());
     }
 
-    private bool ArgumentsOK()
+    private void ProccessAcceptedRequest()
     {
-        bool invalidArguments = _receivedArgs.Length != 4;
+        _transactionData.SetRequestType(_requestTypeUnchecked);
 
-        if (invalidArguments)
+        if (!RequestIsReport())
         {
-            //Console.WriteLine($"Missing argument: --type <category> <Description> <value>");
-            return false;
+            SetTransactionValues();
         }
-        return true;
     }
 
     private bool RequestOK()
@@ -46,19 +40,37 @@ public class ConsoleRequestHandler
         switch (_receivedArgs[0])
         {
             case "--expense":
-                _transactionData.SetRequestType(RequestType.Expense);
+                _requestTypeUnchecked = RequestType.Expense;
                 return true;
     
             case "--income":
-                _transactionData.SetRequestType(RequestType.Income);
+                _requestTypeUnchecked = RequestType.Income;
                 return true;
 
+            case "--report":
+                _requestTypeUnchecked = RequestType.Report;
+                return true;
             default:
+                _requestTypeUnchecked = RequestType.Invalid;
                 return false;
         }
     }
 
-    private void setValues()
+    private bool ArgumentsOK()
+    {
+        if (!RequestIsReport()) 
+            return _receivedArgs.Length == 4;
+
+        else 
+            return _receivedArgs.Length == 1;
+    }
+
+    private bool RequestIsReport()
+    {
+        return _requestTypeUnchecked == RequestType.Report;
+    }
+
+    private void SetTransactionValues()
     {
         _transactionData.setData(_receivedArgs[1], _receivedArgs[2], _receivedArgs[3]);
     }
