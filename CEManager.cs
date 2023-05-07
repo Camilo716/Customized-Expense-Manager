@@ -26,7 +26,7 @@ public class CEManager
         (
             _data.GetDescription(),
             float.Parse(_data.GetAmount()),
-            _data.getRequestType(),
+            _data.GetRequestType(),
             _categoryDataAccess.GetCategoryByName(_data.GetCategory())
         );   
     }

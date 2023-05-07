@@ -11,17 +11,22 @@ public class ConsoleRequestHandler
         _transactionData = new TransactionData();
     }
 
-    public ITransactionData getTransactionData()
+    public ITransactionData GetTransactionData()
     {
         return _transactionData;
     }
 
-    public void processRequest()
+    public void ProcessRequest()
     {
         if (ArgumentsOK() && RequestOK())
         {
             setValues();
         }
+
+        // Console.WriteLine("Category: " + _transactionData.GetCategory());
+        // Console.WriteLine("Description: " + _transactionData.GetDescription());
+        // Console.WriteLine("Amount: " + _transactionData.GetAmount());
+        // Console.WriteLine("Type: " + _transactionData.GetRequestType());
     }
 
     private bool ArgumentsOK()

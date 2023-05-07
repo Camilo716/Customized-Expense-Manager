@@ -18,10 +18,6 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public void CreateNewCategory(string name)
     {
-        if (string.IsNullOrEmpty(name))
-        {
-            System.Console.WriteLine("Argumento nulo");
-        }
         _dbContext.Add(new CategoryModel(name));
         _dbContext.SaveChanges();
     }

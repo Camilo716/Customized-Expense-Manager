@@ -21,7 +21,7 @@ public class TransactionData : ITransactionData
         _requestType = requestType;
     }
 
-    public RequestType getRequestType()
+    public RequestType GetRequestType()
     {
         return _requestType;
     }
@@ -49,5 +49,5 @@ public interface ITransactionData
     string GetCategory();
     string GetDescription();
     string GetAmount();
-    RequestType getRequestType();
+    RequestType GetRequestType();
 }

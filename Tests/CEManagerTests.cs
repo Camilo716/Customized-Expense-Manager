@@ -21,14 +21,14 @@ public class CEManagerTests
     [Test]
     public void CreateTransactionInNewCategoryTest()
     {
-        //Arrange
+        // Arrange
         ITransactionData transactionData1 = new TransactionData();
         transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
         transactionData1.SetRequestType(RequestType.Income);
         CEManager manager = CreateCEManager();
         
 
-        //Act
+        // Act
         manager.MakeTransaction(transactionData1);
 
 

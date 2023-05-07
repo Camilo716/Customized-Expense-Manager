@@ -5,7 +5,6 @@ using CEM.DataAccess;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore.Design;
 
 
 IConfiguration configuration = new ConfigurationBuilder()
@@ -27,15 +26,16 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
     var requestHandler = new ConsoleRequestHandler(args);
     var cemanager = new CEManager(transactionDataAccess, categoryDataAccess);
 
-    requestHandler.processRequest();
-    ITransactionData transactionData = requestHandler.getTransactionData();
+    requestHandler.ProcessRequest();
+    ITransactionData transactionData = requestHandler.GetTransactionData();
 
-    bool validRequest = transactionData.getRequestType() != RequestType.Invalid;
+    bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
+
     if (validRequest)
     {
+        System.Console.WriteLine("Valido");
         cemanager.MakeTransaction(transactionData);
     }
-
 }
 
 
