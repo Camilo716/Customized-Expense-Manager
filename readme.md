@@ -5,7 +5,7 @@ A console personal financial management app
 -------------------------
 ## Run Tests
 ```
-    dotnet test
+dotnet test
 ```
 -------------------------
 ## Manage your finances
