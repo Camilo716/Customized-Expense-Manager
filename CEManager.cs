@@ -1,6 +1,7 @@
 using CEM.Repositories;
 using CEM.Util;
 using CEM.Models;
+using CEM.Views;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,7 @@ public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
     public ICategoryRepository _categoryDataAccess; 
+    private ITableUI _tableUI;
     public ITransactionData _data;
 
     public CEManager(ITransactionRepository transactionDataAccess, ICategoryRepository categoryDataAccess)
@@ -30,6 +32,13 @@ public class CEManager
             _categoryDataAccess.GetCategoryByName(_data.GetCategory())
         );   
     }
+
+    public void ShowMonthlyReport()
+    {
+        
+    }
+
+
 
     private void TryCreateCategory()
     {

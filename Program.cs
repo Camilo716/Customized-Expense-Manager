@@ -31,7 +31,7 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
 
     bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
     bool notReport = transactionData.GetRequestType() != RequestType.Report;
-
+    
     if (validRequest & notReport)
     {
         cemanager.MakeTransaction(transactionData);
