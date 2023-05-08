@@ -30,10 +30,10 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
     ITransactionData transactionData = requestHandler.GetTransactionData();
 
     bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
+    bool notReport = transactionData.GetRequestType() != RequestType.Report;
 
-    if (validRequest)
+    if (validRequest & notReport)
     {
-        System.Console.WriteLine("Valido");
         cemanager.MakeTransaction(transactionData);
     }
 }
