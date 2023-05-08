@@ -24,7 +24,7 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public IEnumerable<CategoryModel> GetAllCategories()
     {
-        return _dbContext.Categories;
+        return _dbContext.Categories.Include(c => c.TransactionsInCategory);
     }
 
     public CategoryModel GetCategoryByName(string categoryName)

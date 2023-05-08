@@ -36,6 +36,10 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
     {
         cemanager.MakeTransaction(transactionData);
     }
+    else
+    {
+        cemanager.ShowMonthlyReport();
+    }
 }
 
 
