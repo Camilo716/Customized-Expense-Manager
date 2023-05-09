@@ -4,19 +4,18 @@ using CEM.Models;
 using CEM.Views;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class CEManager
 {
     public ITransactionRepository _transactionDataAccess {get;set;} 
     public ICategoryRepository _categoryDataAccess; 
-    private ITableUI _tableUI;
     public ITransactionData _data;
 
     public CEManager(ITransactionRepository transactionDataAccess, ICategoryRepository categoryDataAccess)
     {
         _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;
-        _tableUI = new ConsoleTableUI();
     }
 
     public void MakeTransaction(ITransactionData transactionData)
@@ -38,27 +37,17 @@ public class CEManager
     {
         List<CategoryModel> categoriesWithTransactions = _categoryDataAccess.GetAllCategories().ToList();
 
-        var categories = new List<string>();
-        var earned = new List<float>();
-        var spent = new List<float>();
+        ITableUI tableUI = new ConsoleTableUI(categoriesWithTransactions);
 
-        foreach (var category in categoriesWithTransactions)
+        tableUI.DrawTable();
+    }
+
+    private void DrawCollection(List<string> coll)
+    {
+        foreach (var item in coll)
         {
-            categories.Add(category.Name);
-
-            foreach (var transaction in category.TransactionsInCategory)
-            {
-                if (transaction.TransactionType == RequestType.Income)
-                {
-                    earned.Add(transaction.Amount);
-                } else
-                {
-                    spent.Add(transaction.Amount);
-                }
-            }
+            Console.WriteLine($"Item: {item}\n");
         }
-        
-        _tableUI.DrawTable(categories.ToArray(), earned.ToArray(), spent.ToArray());
     }
 
 
