@@ -9,7 +9,7 @@ public class TransactionData : ITransactionData
     private string _Description;
     private string _Amount; 
     
-    public void setData(string category, string Description,  string Amount)
+    public void SetData(string category, string Description,  string Amount)
     {
         _category = category;
         _Description = Description;
@@ -44,7 +44,7 @@ public class TransactionData : ITransactionData
 
 public interface ITransactionData
 {  
-    void setData(string category, string Description, string value);
+    void SetData(string category, string Description, string value);
     void SetRequestType(RequestType requestType);
     string GetCategory();
     string GetDescription();

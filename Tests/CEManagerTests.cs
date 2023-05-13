@@ -23,7 +23,7 @@ public class CEManagerTests
     {
         // Arrange
         ITransactionData transactionData1 = new TransactionData();
-        transactionData1.setData("NewCategory" ,"transactionDescription", "1000");
+        transactionData1.SetData("NewCategory" ,"transactionDescription", "1000");
         transactionData1.SetRequestType(RequestType.Income);
         CEManager manager = CreateCEManager();
         

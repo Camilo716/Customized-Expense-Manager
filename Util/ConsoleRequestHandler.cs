@@ -72,6 +72,6 @@ public class ConsoleRequestHandler
 
     private void SetTransactionValues()
     {
-        _transactionData.setData(_receivedArgs[1], _receivedArgs[2], _receivedArgs[3]);
+        _transactionData.SetData(_receivedArgs[1], _receivedArgs[2], _receivedArgs[3]);
     }
 }
