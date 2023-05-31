@@ -42,16 +42,6 @@ public class CEManager
         tableUI.DrawTable();
     }
 
-    private void DrawCollection(List<string> coll)
-    {
-        foreach (var item in coll)
-        {
-            Console.WriteLine($"Item: {item}\n");
-        }
-    }
-
-
-
     private void TryCreateCategory()
     {
         if (!CategoryAlreadyExist())
