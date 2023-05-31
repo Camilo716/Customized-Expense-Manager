@@ -29,6 +29,7 @@ public class ConsoleTableUI : ITableUI
 
     private void DrawHeader()
     {
+        Console.WriteLine("--------------------------------------------------------------------------------");
         Console.WriteLine("| {0,-40} | {1,15} | {2,15} |", "Tags/Categories of May 2023", "Earned", "Spent");
         Console.WriteLine("--------------------------------------------------------------------------------");
     }
