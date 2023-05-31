@@ -5,97 +5,38 @@ namespace CEM.Tests;
 
 public class ConsoleRequestHandlerTests
 {
-    [SetUp]
-    public void Setup()
+    [TestCase
+        (
+        new string[]{"--expense", "eCategory", "eDescription","100"},
+        RequestType.Expense
+        )
+    ]
+    [TestCase
+        (
+        new string[]{"--income","exCategory","exDescription","10000"},
+        RequestType.Income
+        )
+    ]
+    [TestCase
+        (
+        new string[]{"--report"},
+        RequestType.Report
+        )
+    ]
+    [TestCase
+        (
+        new string[]{"--income","eCategory","12341"},
+        RequestType.Invalid
+        )
+    ]
+    public void ValidateRequest(string[] args, RequestType expectedRequestType)
     {
-    }
-
-    [Test]
-    public void ValidateExpenseRequest()
-    {
-        string[] expenseArgs = new string[]{
-            "--expense",
-            "eCategory",
-            "eDescription",
-            "100",
-        };
-        var requestHandler = new ConsoleRequestHandler(expenseArgs);
-
-        requestHandler.ValidateRequest();
-
-        ITransactionData transactionData = requestHandler.GetTransactionData();        
-        var operationType = transactionData.GetRequestType();
-        Assert.That(operationType, Is.EqualTo(RequestType.Expense));
-    }
-
-    [Test]
-    public void ValidateIncomeRequest()
-    {
-        string[] expenseArgs = new string[]{
-            "--income",
-            "exCategory",
-            "exDescription",
-            "10000"
-        };
-        var requestHandler = new ConsoleRequestHandler(expenseArgs);
-
-        requestHandler.ValidateRequest();
-
-        ITransactionData transactionData = requestHandler.GetTransactionData();        
-        RequestType operationType = transactionData.GetRequestType();
-        Assert.That(operationType, Is.EqualTo(RequestType.Income));
-    }
-
-    [Test]
-    public void ValidateReportRequest()
-    {
-        string[] reportArgs = new string[]{
-            "--report",
-        };
-        var requestHandler = new ConsoleRequestHandler(reportArgs);
+        var requestHandler = new ConsoleRequestHandler(args);
 
         requestHandler.ValidateRequest();
 
         ITransactionData transactionData = requestHandler.GetTransactionData();
-        RequestType operationType = transactionData.GetRequestType();
-        Assert.That(operationType, Is.EqualTo(RequestType.Report));       
-    }
-
-    [Test]
-    public void invalidRequestTest()
-    {  
-        string[] invalidRequest = new string[]{
-            "InvalidRequest",
-            "Category",
-            "Description",
-            "100"
-        };
-        var requestHandler = new ConsoleRequestHandler(invalidRequest);
-
-        requestHandler.ValidateRequest();
-
-        ITransactionData transactionData = requestHandler.GetTransactionData();        
         var operationType = transactionData.GetRequestType();
-
-        Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
+        Assert.That(operationType, Is.EqualTo(expectedRequestType));
     }
-
-    [Test]
-    public void InvalidArgumentTest()
-    {  
-        string[] invalidArgs = new string[]{
-            "--income",
-            "eCategory",
-            "12341",
-        };
-        var requestHandler = new ConsoleRequestHandler(invalidArgs);
-
-        requestHandler.ValidateRequest();
-
-        ITransactionData transactionData = requestHandler.GetTransactionData();        
-        var operationType = transactionData.GetRequestType();
-
-        Assert.That(operationType, Is.EqualTo(RequestType.Invalid));      
-    }
-
 }
