@@ -43,8 +43,6 @@ public class ConsoleTableUI : ITableUI
         {
             foreach (var transaction in category.TransactionsInCategory)
             {
-                income = 0;
-                expense = 0;
 
                 if (transaction.TransactionType == RequestType.Income)
                 {
@@ -77,7 +75,6 @@ public class ConsoleTableUI : ITableUI
                 .Where(t => t.TransactionType == RequestType.Expense)
                 .Select(t => t.Amount)
                 .ToList();
-
 
             totalSpent += expenses.Sum();
             totalEarned += incomes.Sum();
