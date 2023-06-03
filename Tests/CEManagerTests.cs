@@ -1,12 +1,10 @@
 using NUnit.Framework;
-using CEM.Tests.Mocks;
+using CEM.Tests.Context;
 using CEM.Util;
-using CEM.Models;
-using CEM.Repositories;
-using System.Collections.Generic;
-using System;
-using System.Collections;
+using CEM.DataAccess;
+using CEM.Context;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace CEM.Tests;
 
@@ -19,62 +17,37 @@ public class CEManagerTests
     }
     
     [Test]
-    public void CreateTransactionInNewCategoryTest()
+    public void CreateTransactionInNewCategoryTest_()
     {
-        // Arrange
-        ITransactionData transactionData1 = new TransactionData();
-        transactionData1.SetData("NewCategory" ,"transactionDescription", "1000");
-        transactionData1.SetRequestType(RequestType.Income);
-        CEManager manager = CreateCEManager();
-        
+        var options = new DbContextOptionsBuilder<DbCemContext>()
+            .UseInMemoryDatabase("InMemoryDatabase")
+            .Options;
 
-        // Act
-        manager.MakeTransaction(transactionData1);
-
-
-        // Assert
-        List<TransactionModel> transactionsExpected = new List<TransactionModel>
+        using (var dbContext = new InMemoryDbContext(options))
         {
-            new TransactionModel
-            {
-                Description = "transactionDescription",
-                Amount = 1000,
-                TransactionType = RequestType.Income,
-                CategoryOfTransaction = new CategoryModel("NewCategory")
-            }
-        };
+            dbContext.Database.EnsureCreated();     
 
-        List<TransactionModel> transactionsReceived = manager._transactionDataAccess.
-            GetAllTransactionsByTypeAndCategory(
-                RequestType.Income, manager._categoryDataAccess.GetCategoryByName(manager._data.GetCategory())
-            ).ToList();
+            // Arrange 
+            ITransactionData transactionData1 = new TransactionData();
+            transactionData1.SetData("NewCategory" ,"transactionDescription", "1000");
+            transactionData1.SetRequestType(RequestType.Income);
+            var transactionDataAccess = new EFTransactionDataAccess(dbContext);
+            var categoryDataAccess = new EFCategoryDataAccess(dbContext);
+            CEManager manager = new CEManager(transactionDataAccess, categoryDataAccess);
 
-        ArrayList totalDataExpected = GetDataFromAllTransactions(transactionsExpected);
-        ArrayList totalDataReceived = GetDataFromAllTransactions(transactionsReceived);
+            // Act
+            manager.MakeTransaction(transactionData1);
 
-        Assert.That(totalDataReceived, Is.EquivalentTo(totalDataExpected));
-    }
 
-    private ArrayList GetDataFromAllTransactions(List<TransactionModel> transactions)
-    {
-        var allData = new ArrayList();
+            // Assert
+            var createdCategory = dbContext.Categories.FirstOrDefault(c => c.Name == "NewCategory");
+            var transactionsInCategory = createdCategory?.TransactionsInCategory.FirstOrDefault(t =>
+                t.Description == "transactionDescription" &&
+                t.Amount == 1000);
 
-        for (int i = 0; i < transactions.Count; i++)
-        {
-            allData.Add(transactions[i].Description);
-            allData.Add(transactions[i].CategoryOfTransaction.Name); 
+            Assert.NotNull(transactionsInCategory);
+
+            dbContext.Database.EnsureDeleted();
         }
-
-        return allData;
     }
-    
-    private CEManager CreateCEManager()
-    {
-        ITransactionRepository transactionMock = new TransactionMock();
-        ICategoryRepository categoryMock = new CategoryMock();
-        CEManager manager = new CEManager(transactionMock, categoryMock);
-
-        return manager;
-    }
-
 }
