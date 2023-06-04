@@ -8,9 +8,9 @@ using System;
 
 public class CEManager
 {
-    public ITransactionRepository _transactionDataAccess {get;set;} 
-    public ICategoryRepository _categoryDataAccess; 
-    public ITransactionData _data;
+    private ITransactionRepository _transactionDataAccess {get;set;} 
+    private ICategoryRepository _categoryDataAccess; 
+    private ITransactionData _data;
 
     public CEManager(ITransactionRepository transactionDataAccess, ICategoryRepository categoryDataAccess)
     {

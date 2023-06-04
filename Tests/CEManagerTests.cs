@@ -17,7 +17,7 @@ public class CEManagerTests
     }
     
     [Test]
-    public void CreateTransactionInNewCategoryTest_()
+    public void CreateTransactionInNewCategoryTest()
     {
         var options = new DbContextOptionsBuilder<DbCemContext>()
             .UseInMemoryDatabase("InMemoryDatabase")
