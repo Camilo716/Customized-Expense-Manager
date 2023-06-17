@@ -2,6 +2,16 @@ using System.Collections.Generic;
 
 namespace CEM.Util;
 
+public interface ITransactionData
+{  
+    void SetData(string category, string Description, string value);
+    void SetRequestType(RequestType requestType);
+    string GetCategory();
+    string GetDescription();
+    string GetAmount();
+    RequestType GetRequestType();
+}
+
 public class TransactionData : ITransactionData
 {   
     private RequestType _requestType = RequestType.Invalid;
@@ -42,12 +52,3 @@ public class TransactionData : ITransactionData
     }
 }
 
-public interface ITransactionData
-{  
-    void SetData(string category, string Description, string value);
-    void SetRequestType(RequestType requestType);
-    string GetCategory();
-    string GetDescription();
-    string GetAmount();
-    RequestType GetRequestType();
-}
