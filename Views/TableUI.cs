@@ -56,6 +56,8 @@ public class ConsoleTableUI : ITableUI
 
             Console.WriteLine("| {0,-40} | {1,15:C2} | {2,15:C2} |", category.Name, income, expense);
             Console.WriteLine("--------------------------------------------------------------------------------");
+            income = 0;
+            expense = 0;
         }
     }
 
