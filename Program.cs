@@ -12,11 +12,12 @@ IConfiguration configuration = new ConfigurationBuilder()
     .Build();
 
 var connectionString = configuration.GetConnectionString("CEM");
-var optionsBuilder = new DbContextOptionsBuilder<DbCemContext>();
-optionsBuilder.UseSqlServer(connectionString);
+var optionsBuilder = new DbContextOptionsBuilder<DbCemContext>()
+    .UseSqlServer(connectionString)
+    .Options;
 
 
-using (var dbContext = new DbCemContext(optionsBuilder.Options))
+using (var dbContext = new DbCemContext(optionsBuilder))
 {
     dbContext.Database.EnsureCreated();     
     var transactionDataAccess = new EFTransactionDataAccess(dbContext);
@@ -39,6 +40,8 @@ using (var dbContext = new DbCemContext(optionsBuilder.Options))
     {
         cemanager.ShowMonthlyReport();
     }
+
+    dbContext.Database.EnsureDeleted();
 }
 
 
