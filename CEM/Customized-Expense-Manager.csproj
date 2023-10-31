@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Customized_Expense_Manager</RootNamespace>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
@@ -28,5 +28,9 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CemApi\CemApi.csproj" />
   </ItemGroup>
 </Project>

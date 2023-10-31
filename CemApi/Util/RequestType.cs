@@ -1,4 +1,4 @@
-namespace CEM.Util;
+namespace CemApi.Util;
 
 public enum RequestType
 {

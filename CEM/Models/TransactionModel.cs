@@ -1,6 +1,7 @@
 namespace CEM.Models;
 
 using CEM.Util;
+using CemApi.Util;
 using System;
 
 public class TransactionModel

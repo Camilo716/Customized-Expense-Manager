@@ -4,6 +4,7 @@ using CEM.DataAccess;
 using CEM.Context;
 using Microsoft.EntityFrameworkCore;
 using CEM.Repositories;
+using CemApi.Util;
 
 namespace CEM.Tests;
 

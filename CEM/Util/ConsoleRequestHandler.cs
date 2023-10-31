@@ -1,3 +1,5 @@
+using CemApi.Util;
+
 namespace CEM.Util;
 
 public class ConsoleRequestHandler

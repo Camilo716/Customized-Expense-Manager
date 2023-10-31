@@ -1,4 +1,5 @@
 using CEM.Util;
+using CemApi.Util;
 
 namespace CEM.Tests;
 

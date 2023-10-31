@@ -1,7 +1,7 @@
 namespace CEM.Repositories;
 
-using CEM.Util;
 using CEM.Models;
+using CemApi.Util;
 
 public interface ITransactionRepository
 {
