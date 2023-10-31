@@ -1,9 +1,9 @@
 namespace CEM.Repositories;
 
-using CEM.Models;
+using CemApi.Models;
 using CemApi.Util;
 
 public interface ITransactionRepository
 {
-    void AddTransaction(string Description, float Amount, RequestType TransactionType, CategoryModel category);
+    void AddTransaction(string Description, float Amount, RequestType TransactionType, Category category);
 }

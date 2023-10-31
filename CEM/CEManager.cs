@@ -1,10 +1,9 @@
 using CEM.Repositories;
 using CEM.Util;
-using CEM.Models;
 using CEM.Views;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using CemApi.Models;
 
 public class CEManager
 {
@@ -35,7 +34,7 @@ public class CEManager
 
     public void ShowMonthlyReport()
     {
-        List<CategoryModel> categoriesWithTransactions = _categoryDataAccess.GetAllCategories().ToList();
+        List<Category> categoriesWithTransactions = _categoryDataAccess.GetAllCategories().ToList();
 
         ITableUI tableUI = new ConsoleTableUI(categoriesWithTransactions);
 
@@ -52,7 +51,7 @@ public class CEManager
 
     private bool CategoryAlreadyExist()
     {
-        List<CategoryModel> allCategories = _categoryDataAccess.GetAllCategories().ToList();
+        List<Category> allCategories = _categoryDataAccess.GetAllCategories().ToList();
         
         for (int category = 0; category < allCategories.Count ; category++)
         {

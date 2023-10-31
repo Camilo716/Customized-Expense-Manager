@@ -1,15 +1,15 @@
 namespace CEM.Repositories;
 
-using CEM.Models;
+using CemApi.Models;
 using System.Collections.Generic;
 
 public interface ICategoryRepository : IAllCategoriesRepository
 {
     void CreateNewCategory(string name);
-    CategoryModel GetCategoryByName(string categoryName);
+    Category GetCategoryByName(string categoryName);
 }
 
 public interface IAllCategoriesRepository
 {
-    IEnumerable<CategoryModel> GetAllCategories();    
+    IEnumerable<Category> GetAllCategories();    
 }

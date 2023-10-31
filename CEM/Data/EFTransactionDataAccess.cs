@@ -1,10 +1,10 @@
-using CEM.Context;
-using CEM.Models;
 using CEM.Repositories;
 
 using System.Collections.Generic;
 using System.Linq;
 using CemApi.Util;
+using CemApi.Models;
+using CEM.Context;
 
 namespace CEM.DataAccess;
 
@@ -17,9 +17,9 @@ public class EFTransactionDataAccess : ITransactionRepository
         _dbContext = dbContext;
     }
 
-    public void AddTransaction(string Description, float Amount, RequestType TransactionType, CategoryModel category)
+    public void AddTransaction(string Description, float Amount, RequestType TransactionType, Category category)
     {
-        TransactionModel transaction = new TransactionModel
+        Transaction transaction = new Transaction
         {
             Description = Description,
             Amount = Amount,
@@ -31,7 +31,7 @@ public class EFTransactionDataAccess : ITransactionRepository
         _dbContext.SaveChanges();
     }
 
-    public IEnumerable<TransactionModel> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, CategoryModel category)
+    public IEnumerable<Transaction> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, Category category)
     {
         var transactions = _dbContext.Transactions.Where(t => t.TransactionType == TransactionType && t.CategoryOfTransaction == category);
 

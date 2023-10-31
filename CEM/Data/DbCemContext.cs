@@ -1,19 +1,19 @@
+using CemApi.Models;
 using Microsoft.EntityFrameworkCore;
-using CEM.Models;
 
 namespace CEM.Context; 
 
 public class DbCemContext : DbContext
 {
-    public DbSet<CategoryModel> Categories{get;set;}
-    public DbSet<TransactionModel> Transactions{get;set;}
+    public DbSet<Category> Categories{get;set;}
+    public DbSet<Transaction> Transactions{get;set;}
 
     public DbCemContext (DbContextOptions<DbCemContext> options) : base(options){ }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        modelBuilder.Entity<CategoryModel>(category =>
+        modelBuilder.Entity<Category>(category =>
         {
             category.HasKey(c => c.Name);
             category.Property(e => e.Name).IsRequired();
@@ -25,7 +25,7 @@ public class DbCemContext : DbContext
 
         });
 
-        modelBuilder.Entity<TransactionModel>(transaction =>
+        modelBuilder.Entity<Transaction>(transaction =>
         {
             transaction.HasKey(t => t.TransactionID);
             transaction.Property(t=> t.Description).IsRequired();

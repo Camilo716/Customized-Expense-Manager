@@ -1,11 +1,11 @@
 ﻿using System;
 using CEM.Util;
-using CEM.Context;
 using CEM.DataAccess;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using CemApi.Util;
+using CEM.Context;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)

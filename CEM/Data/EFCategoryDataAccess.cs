@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using CEM.Models;
 using CEM.Repositories;
 using Microsoft.EntityFrameworkCore;
-using CEM.Context;
 using System.Linq;
+using CemApi.Models;
+using CEM.Context;
 
 namespace CEM.DataAccess;
 
@@ -18,16 +18,16 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public void CreateNewCategory(string name)
     {
-        _dbContext.Add(new CategoryModel(name));
+        _dbContext.Add(new Category(name));
         _dbContext.SaveChanges();
     }
 
-    public IEnumerable<CategoryModel> GetAllCategories()
+    public IEnumerable<Category> GetAllCategories()
     {
         return _dbContext.Categories.Include(c => c.TransactionsInCategory);
     }
 
-    public CategoryModel GetCategoryByName(string categoryName)
+    public Category GetCategoryByName(string categoryName)
     {
         // Only can exist one category with that name
         return  _dbContext.Categories.Where(c => c.Name == categoryName).ToList()[0];

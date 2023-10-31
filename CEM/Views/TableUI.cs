@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using CEM.Models;
-using CEM.Util;
 using CemApi.Util;
+using CemApi.Models;
 
 namespace CEM.Views;
 
@@ -14,9 +13,9 @@ public interface ITableUI
 
 public class ConsoleTableUI : ITableUI
 {
-    private readonly List<CategoryModel> _categoriesWithTransactions;
+    private readonly List<Category> _categoriesWithTransactions;
 
-    public ConsoleTableUI(List<CategoryModel> categoriesWithTransactions)
+    public ConsoleTableUI(List<Category> categoriesWithTransactions)
     {
         _categoriesWithTransactions = categoriesWithTransactions;
     }

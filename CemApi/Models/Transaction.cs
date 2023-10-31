@@ -1,10 +1,8 @@
-namespace CEM.Models;
-
-using CEM.Util;
 using CemApi.Util;
-using System;
 
-public class TransactionModel
+namespace CemApi.Models;
+
+public class Transaction
 {
     public Guid TransactionID {get;set;}
     public string CategoryID {get;set;}
@@ -12,6 +10,6 @@ public class TransactionModel
     public string Description {get;set;}
     public float Amount {get;set;}
     public RequestType TransactionType{get;set;}
-    
-    public  virtual CategoryModel CategoryOfTransaction {get;set;}
+
+    public  virtual Category CategoryOfTransaction {get;set;}
 }
