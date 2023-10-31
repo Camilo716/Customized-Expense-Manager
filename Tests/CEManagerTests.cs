@@ -1,23 +1,15 @@
-using NUnit.Framework;
 using CEM.Tests.Context;
 using CEM.Util;
 using CEM.DataAccess;
 using CEM.Context;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CEM.Repositories;
 
 namespace CEM.Tests;
 
 public class CEManagerTests
-{
-
-    [SetUp]
-    public void Setup()
-    {
-    }
-    
-    [Test]
+{    
+    [Fact]
     public void CreateTransactionInNewCategoryTest()
     {
         var options = new DbContextOptionsBuilder<DbCemContext>()

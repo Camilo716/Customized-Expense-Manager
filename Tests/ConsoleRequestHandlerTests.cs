@@ -1,29 +1,29 @@
-using NUnit.Framework;
 using CEM.Util;
 
 namespace CEM.Tests;
 
 public class ConsoleRequestHandlerTests
 {
-    [TestCase
+    [Theory]
+    [InlineData
         (
         new string[]{"--expense", "eCategory", "eDescription","100"},
         RequestType.Expense
         )
     ]
-    [TestCase
+    [InlineData
         (
         new string[]{"--income","exCategory","exDescription","10000"},
         RequestType.Income
         )
     ]
-    [TestCase
+    [InlineData
         (
         new string[]{"--report"},
         RequestType.Report
         )
     ]
-    [TestCase
+    [InlineData
         (
         new string[]{"--income","eCategory","12341"},
         RequestType.Invalid
@@ -37,6 +37,6 @@ public class ConsoleRequestHandlerTests
 
         ITransactionData transactionData = requestHandler.GetTransactionData();
         var operationType = transactionData.GetRequestType();
-        Assert.That(operationType, Is.EqualTo(expectedRequestType));
+        Assert.Equal(expectedRequestType, operationType);
     }
 }
