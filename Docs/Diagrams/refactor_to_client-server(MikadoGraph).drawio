@@ -1,13 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram id="CBvLHeb1c75yYGJDVW8A" name="Page-1">
-        <mxGraphModel dx="238" dy="898" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="526" dy="1078" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="15" value="" style="edgeStyle=none;html=1;" parent="1" source="2" target="14" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="MIKADO GOAL&lt;br&gt;Transform coupled client-logic architecture&amp;nbsp; into client-server one" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="2" value="MIKADO GOAL&lt;br&gt;Transform coupled (client and logic) architecture&amp;nbsp; into client-server one" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry y="420" width="180" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="" style="edgeStyle=none;html=1;" parent="1" source="6" target="8" edge="1">
@@ -16,7 +16,7 @@
                 <mxCell id="6" value="Configure web host and&amp;nbsp;use endpoint instead cemanager.MakeTransaction" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="377.5" y="415" width="185" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="" style="edgeStyle=none;html=1;" parent="1" source="8" target="10" edge="1">
+                <mxCell id="26" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="8" target="25">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="Migrate transaction logic to enpoint in side Api project" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -26,16 +26,34 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="Migrate Models into side Api project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="630" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="410" y="920" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="Migrate Util.RequestType into side Api project&amp;nbsp;" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="730" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="410" y="1020" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" style="edgeStyle=none;html=1;" parent="1" source="14" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="Separate Client and server in diferent projects" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="220" y="430" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="19" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Migrate DataAcces into side API project" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="720" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" style="edgeStyle=none;html=1;" edge="1" parent="1" source="25" target="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Migrate transaction logic into services layers in side API project" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="630" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=none;html=1;" edge="1" parent="1" source="29" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Create generic repository interface in side API project and make that current one implements it" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="820" width="160" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
