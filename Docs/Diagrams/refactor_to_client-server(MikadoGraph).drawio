@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="CBvLHeb1c75yYGJDVW8A" name="Page-1">
-        <mxGraphModel dx="835" dy="1268" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="710" dy="1078" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -49,16 +49,16 @@
                 <mxCell id="25" value="Migrate transaction logic into services layers in side API project" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="410" y="630" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="29" target="31">
+                <mxCell id="32" value="" style="edgeStyle=none;html=1;" parent="1" source="29" target="31" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="Create generic repository interface in side API project and make that current one implements it" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="390" y="820" width="160" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" style="edgeStyle=none;html=1;" edge="1" parent="1" source="31" target="10">
+                <mxCell id="33" style="edgeStyle=none;html=1;" parent="1" source="31" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="Migrate DbContext into side API project" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="31" value="Migrate DbContext into side API project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="210" y="820" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
