@@ -22,7 +22,6 @@ public class DbCemContext : DbContext
                     .WithOne(t => t.CategoryOfTransaction)
                     .HasForeignKey(t => t.TransactionID)
                     .OnDelete(DeleteBehavior.Cascade);
-
         });
 
         modelBuilder.Entity<Transaction>(transaction =>
