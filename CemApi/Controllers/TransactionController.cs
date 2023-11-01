@@ -16,9 +16,8 @@ public class TransactionController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> PostAsync([FromBody] ITransactionData transactionData)
+    public async Task<ActionResult> PostAsync([FromBody] TransactionDTO transactionData)
     {
-        _transactionService.MakeTransaction(transactionData);
         return Ok();
     }
 }

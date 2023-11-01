@@ -1,11 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+public class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-Startup startup = new Startup(builder.Configuration);
+        Startup startup = new Startup(builder.Configuration);
 
-startup.ConfigureServices(builder.Services);
+        startup.ConfigureServices(builder.Services);
 
-var app = builder.Build();
+        var app = builder.Build();
 
-startup.ConfigureMiddlewares(app ,app.Environment);
+        startup.ConfigureMiddlewares(app, app.Environment);
 
-app.Run();
+        app.Run();
+    }
+}

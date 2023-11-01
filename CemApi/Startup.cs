@@ -1,9 +1,7 @@
-using System.Net;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
-using CemApi.DTOs;
-using CemApi.Models;
+using CemApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 public class Startup
@@ -23,7 +21,7 @@ public class Startup
             opt => opt.UseSqlServer(_config.GetConnectionString("sqlserver-docker"))
         );
 
-        services.AddScoped<Transaction>();
+        services.AddScoped<TransactionService>();
         services.AddScoped<ICategoryRepository, EFCategoryDataAccess>();
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
