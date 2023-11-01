@@ -15,18 +15,16 @@ public class TransactionService
         _categoryRepository = categoryRepository;
     }
 
-    public void MakeTransaction(ITransactionData transactionData)
+    public void MakeTransaction(TransactionDTO transactionDto)
     {
-        ITransactionData _data = transactionData;
-
-        TryCreateCategory(_data.GetCategory());
+        TryCreateCategory(transactionDto.Category);
         
         _transactionRepository.AddTransaction
         (
-            _data.GetDescription(),
-            float.Parse(_data.GetAmount()),
-            _data.GetRequestType(),
-            _categoryRepository.GetCategoryByName(_data.GetCategory())
+            transactionDto.Description,
+            float.Parse(transactionDto.Amount),
+            transactionDto.RequestType,
+            _categoryRepository.GetCategoryByName(transactionDto.Category)
         );
     }
 

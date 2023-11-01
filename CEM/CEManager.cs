@@ -21,7 +21,15 @@ public class CEManager
 
     public void MakeTransaction(ITransactionData transactionData)
     {
-        _transactionService.MakeTransaction(transactionData);
+        TransactionDTO transactionDTO = new TransactionDTO
+        {
+            Description = transactionData.GetDescription(),
+            Amount = transactionData.GetAmount(),
+            RequestType = transactionData.GetRequestType(),
+            Category = transactionData.GetCategory(),
+        };
+
+        _transactionService.MakeTransaction(transactionDTO);
     }
 
     public void ShowMonthlyReport()

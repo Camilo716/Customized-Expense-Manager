@@ -1,3 +1,4 @@
+using CEM.Util;
 using CemApi.DTOs;
 using CemApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,9 @@ public class TransactionController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> PostAsync([FromBody] TransactionDTO transactionData)
+    public async Task<ActionResult> PostAsync([FromBody] TransactionDTO transactionDto)
     {
+        _transactionService.MakeTransaction(transactionDto);
         return Ok();
     }
 }
