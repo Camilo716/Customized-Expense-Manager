@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="CBvLHeb1c75yYGJDVW8A" name="Page-1">
-        <mxGraphModel dx="1402" dy="1268" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1236" dy="1027" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -104,19 +104,19 @@
                     <mxGeometry x="1000" y="415" width="150" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="55" value="Create TransactionDTO because cannot pass ITransactionData in a request" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
-                    <mxGeometry x="-60" y="435" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="-150" y="670" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="55">
+                <mxCell id="62" style="edgeStyle=none;html=1;" edge="1" parent="1" source="70" target="55">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="67" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="66">
+                <mxCell id="71" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="70">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="Receive from request TransactionDTO instead of ITransactionData" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="60" value="Receive from request TransactionDTO instead&amp;nbsp; ITransactionData" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
                     <mxGeometry x="170" y="520" width="140" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="Migrate TransactionData to side api project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
-                    <mxGeometry x="-60" y="580" width="120" height="60" as="geometry"/>
+                <mxCell id="70" value="Receive TransactionDTO in TransactionService" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+                    <mxGeometry y="580" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
