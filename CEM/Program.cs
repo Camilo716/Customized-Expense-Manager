@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using CemApi.Util;
 using CEM.Context;
 using CemApi.DTOs;
+using System.Net.Http;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)

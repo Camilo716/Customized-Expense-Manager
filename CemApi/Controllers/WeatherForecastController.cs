@@ -1,32 +1,24 @@
+using CemApi.DTOs;
+using CemApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CemApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+[Route("api/[controller]")]
+public class TransactionController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    private readonly TransactionService _transactionService;
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public TransactionController(TransactionService transactionService)
     {
-        _logger = logger;
+        _transactionService = transactionService;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpPost]
+    public async Task<ActionResult> PostAsync([FromBody] ITransactionData transactionData)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        _transactionService.MakeTransaction(transactionData);
+        return Ok();
     }
 }
