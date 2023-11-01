@@ -1,23 +1,14 @@
 using CemApi.Util;
+using CemApi.DTOs;
 
 namespace CEM.Util;
-
-public interface ITransactionData
-{  
-    void SetData(string category, string Description, string value);
-    void SetRequestType(RequestType requestType);
-    string GetCategory();
-    string GetDescription();
-    string GetAmount();
-    RequestType GetRequestType();
-}
 
 public class TransactionData : ITransactionData
 {   
     private RequestType _requestType = RequestType.Invalid;
     private string _category;
     private string _Description;
-    private string _Amount; 
+    private string _Amount;
     
     public void SetData(string category, string Description,  string Amount)
     {

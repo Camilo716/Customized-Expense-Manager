@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using CEM.Repositories;
 using CemApi.Util;
 using CEM.Context;
+using CemApi.DTOs;
 
 namespace CEM.Tests;
 

@@ -41,9 +41,12 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" value="Migrate DataAcces into side API project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="720" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="340" y="720" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" style="edgeStyle=none;html=1;" parent="1" source="25" target="19" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="25" target="38">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="Migrate transaction logic into services layers in side API project" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -53,13 +56,16 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="Migrate Repositories and data access to side API project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
-                    <mxGeometry x="390" y="825" width="160" height="70" as="geometry"/>
+                    <mxGeometry x="320" y="820" width="160" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="33" style="edgeStyle=none;html=1;" parent="1" source="31" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" value="Migrate DbContext into side API project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
-                    <mxGeometry x="210" y="830" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="160" y="825" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Migrate ITransactionData to side API project" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="720" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
