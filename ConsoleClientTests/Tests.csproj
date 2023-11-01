@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CEM\Customized-Expense-Manager.csproj" />
+    <ProjectReference Include="..\ConsoleClient\Customized-Expense-Manager.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using CemApi.Util;
 using CEM.Context;
 using CemApi.DTOs;
-using System.Net.Http;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -23,11 +22,10 @@ var optionsBuilder = new DbContextOptionsBuilder<DbCemContext>()
 using (var dbContext = new DbCemContext(optionsBuilder))
 {
     dbContext.Database.EnsureCreated();     
-    var transactionDataAccess = new EFTransactionDataAccess(dbContext);
     var categoryDataAccess = new EFCategoryDataAccess(dbContext);
 
     var requestHandler = new ConsoleRequestHandler(args);
-    var cemanager = new CEManager(transactionDataAccess, categoryDataAccess);
+    var cemanager = new ClientCEM(categoryDataAccess);
 
     requestHandler.ValidateRequest();
     ITransactionData transactionData = requestHandler.GetTransactionData();

@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using CemApi.Models;
 using CemApi.DTOs;
-using CemApi.Services;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
-public class CEManager
+public class ClientCEM
 {
-    private ITransactionRepository _transactionDataAccess {get;set;} 
     private ICategoryRepository _categoryDataAccess; 
-    private readonly TransactionService _transactionService;
 
-    public CEManager(ITransactionRepository transactionDataAccess, ICategoryRepository categoryDataAccess)
+    public ClientCEM(ICategoryRepository categoryDataAccess)
     {
-        _transactionDataAccess = transactionDataAccess;
         _categoryDataAccess = categoryDataAccess;
-        _transactionService = new TransactionService(_transactionDataAccess, _categoryDataAccess);
     }
 
     public void MakeTransaction(ITransactionData transactionData)
@@ -28,8 +26,12 @@ public class CEManager
             RequestType = transactionData.GetRequestType(),
             Category = transactionData.GetCategory(),
         };
+        string jsonContent = JsonConvert.SerializeObject(transactionDTO);
+        HttpContent httpContent = new StringContent(
+            jsonContent, Encoding.UTF8, "application/json");
 
-        _transactionService.MakeTransaction(transactionDTO);
+        HttpClient client = new HttpClient();
+        client.PostAsync("http://localhost:5178/api/transaction", httpContent);
     }
 
     public void ShowMonthlyReport()

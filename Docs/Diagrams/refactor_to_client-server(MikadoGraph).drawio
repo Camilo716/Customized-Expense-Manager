@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="CBvLHeb1c75yYGJDVW8A" name="Page-1">
-        <mxGraphModel dx="1236" dy="1027" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1737" dy="1078" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="9" value="" style="edgeStyle=none;html=1;" parent="1" source="6" target="8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Use api endpoint instead cemanager.MakeTransaction" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="6" value="Use api endpoint instead cemanager.MakeTransaction" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="377.5" y="415" width="185" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="" style="edgeStyle=none;html=1;" parent="1" source="8" target="25" edge="1">
@@ -25,11 +25,11 @@
                 <mxCell id="50" value="" style="edgeStyle=none;html=1;" parent="1" source="8" target="49" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="8" target="60">
+                <mxCell id="61" value="" style="edgeStyle=none;html=1;" parent="1" source="8" target="60" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="Migrate transaction logic to enpoint in side Api project" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="540" width="120" height="60" as="geometry"/>
+                <mxCell id="8" value="Migrate transaction logic to enpoint in side Api project" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="530" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="" style="edgeStyle=none;html=1;" parent="1" source="10" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -43,7 +43,7 @@
                 <mxCell id="16" style="edgeStyle=none;html=1;" parent="1" source="14" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="14" target="53">
+                <mxCell id="54" value="" style="edgeStyle=none;html=1;" parent="1" source="14" target="53" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="Separate Client and server in diferent projects" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -88,7 +88,7 @@
                 <mxCell id="47" value="" style="edgeStyle=none;html=1;" parent="1" source="41" target="46" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" style="edgeStyle=none;html=1;" edge="1" parent="1" source="41" target="19">
+                <mxCell id="57" style="edgeStyle=none;html=1;" parent="1" source="41" target="19" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="Configure web host and services" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
@@ -100,22 +100,22 @@
                 <mxCell id="49" value="Since cemanager.MakeTransaction()&lt;br&gt;will be no longer used, migrate cemanagerTest to sideAPI aproject tests" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="590" y="610" width="190" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="Use api enpoint instead cemanager.ShowReport" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="53" value="Use api enpoint instead cemanager.ShowReport" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1000" y="415" width="150" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="Create TransactionDTO because cannot pass ITransactionData in a request" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+                <mxCell id="55" value="Create TransactionDTO because cannot pass ITransactionData in a request" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="-150" y="670" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" style="edgeStyle=none;html=1;" edge="1" parent="1" source="70" target="55">
+                <mxCell id="62" style="edgeStyle=none;html=1;" parent="1" source="70" target="55" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" style="edgeStyle=none;html=1;" edge="1" parent="1" source="60" target="70">
+                <mxCell id="71" style="edgeStyle=none;html=1;" parent="1" source="60" target="70" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="Receive from request TransactionDTO instead&amp;nbsp; ITransactionData" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+                <mxCell id="60" value="Receive from request TransactionDTO instead&amp;nbsp; ITransactionData" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="170" y="520" width="140" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="Receive TransactionDTO in TransactionService" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+                <mxCell id="70" value="Receive TransactionDTO in TransactionService" style="whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry y="580" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
