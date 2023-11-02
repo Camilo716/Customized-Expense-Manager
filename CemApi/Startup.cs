@@ -18,7 +18,7 @@ public class Startup
         services.AddControllers();
 
         services.AddDbContext<DbCemContext>(
-            opt => opt.UseSqlServer(_config.GetConnectionString("sqlserver-docker"))
+            opt => opt.UseSqlServer(_config.GetConnectionString("sqlserver_docker"))
         );
 
         services.AddScoped<TransactionService>();
