@@ -33,7 +33,7 @@ public class ClientCEM
     public static async Task ShowMonthlyReport()
     {
         HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync("http://localhost:5178/api/transaction");
+        HttpResponseMessage response = await client.GetAsync("http://localhost:5178/api/category");
         
         string categoriesJson = response.Content.ReadAsStringAsync().Result;
         IEnumerable<Category> categories = JsonConvert
