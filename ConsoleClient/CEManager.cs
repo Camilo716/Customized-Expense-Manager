@@ -7,12 +7,13 @@ using CemApi.DTOs;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 public class ClientCEM
 {
     public ClientCEM() { }
 
-    public void MakeTransaction(ITransactionData transactionData)
+    public async static Task MakeTransaction(ITransactionData transactionData)
     {
         TransactionDTO transactionDTO = new TransactionDTO
         {
@@ -26,13 +27,13 @@ public class ClientCEM
             jsonContent, Encoding.UTF8, "application/json");
 
         HttpClient client = new HttpClient();
-        client.PostAsync("http://localhost:5178/api/transaction", httpContent).Wait();
+        await client.PostAsync("http://localhost:5178/api/transaction", httpContent);
     }
 
-    public void ShowMonthlyReport()
+    public static async Task ShowMonthlyReport()
     {
         HttpClient client = new HttpClient();
-        HttpResponseMessage response = client.GetAsync("http://localhost:5178/api/transaction").Result;
+        HttpResponseMessage response = await client.GetAsync("http://localhost:5178/api/transaction");
         
         string categoriesJson = response.Content.ReadAsStringAsync().Result;
         IEnumerable<Category> categories = JsonConvert

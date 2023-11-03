@@ -3,7 +3,6 @@ using CemApi.Util;
 using CemApi.DTOs;
 
 var requestHandler = new ConsoleRequestHandler(args);
-var cemanager = new ClientCEM();
 
 requestHandler.ValidateRequest();
 ITransactionData transactionData = requestHandler.GetTransactionData();
@@ -13,11 +12,11 @@ bool notReport = transactionData.GetRequestType() != RequestType.Report;
 
 if (validRequest & notReport)
 {
-    cemanager.MakeTransaction(transactionData);
+    await ClientCEM.MakeTransaction(transactionData);
 }
 else
 {
-    cemanager.ShowMonthlyReport();
+    await ClientCEM.ShowMonthlyReport();
 }
 
 
