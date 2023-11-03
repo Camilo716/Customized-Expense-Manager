@@ -10,12 +10,7 @@ using System.Text;
 
 public class ClientCEM
 {
-    private ICategoryRepository _categoryDataAccess; 
-
-    public ClientCEM(ICategoryRepository categoryDataAccess)
-    {
-        _categoryDataAccess = categoryDataAccess;
-    }
+    public ClientCEM() { }
 
     public void MakeTransaction(ITransactionData transactionData)
     {
@@ -31,13 +26,19 @@ public class ClientCEM
             jsonContent, Encoding.UTF8, "application/json");
 
         HttpClient client = new HttpClient();
-        client.PostAsync("http://localhost:5178/api/transaction", httpContent);
+        client.PostAsync("http://localhost:5178/api/transaction", httpContent).Wait();
     }
 
     public void ShowMonthlyReport()
     {
-        List<Category> categoriesWithTransactions = _categoryDataAccess.GetAllCategories().ToList();
-        ITableUI tableUI = new ConsoleTableUI(categoriesWithTransactions);
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = client.GetAsync("http://localhost:5178/api/transaction").Result;
+        
+        string categoriesJson = response.Content.ReadAsStringAsync().Result;
+        IEnumerable<Category> categories = JsonConvert
+            .DeserializeObject<IEnumerable<Category>>(categoriesJson);
+
+        ITableUI tableUI = new ConsoleTableUI(categories.ToList());
         tableUI.DrawTable();
     }
 }

@@ -1,48 +1,23 @@
-﻿using System;
-using CEM.Util;
-using CEM.DataAccess;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using CEM.Util;
 using CemApi.Util;
-using CEM.Context;
 using CemApi.DTOs;
 
-IConfiguration configuration = new ConfigurationBuilder()
-    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    .AddJsonFile("./appsettings.json")
-    .Build();
+var requestHandler = new ConsoleRequestHandler(args);
+var cemanager = new ClientCEM();
 
-var connectionString = configuration.GetConnectionString("CEM");
-var optionsBuilder = new DbContextOptionsBuilder<DbCemContext>()
-    .UseSqlServer(connectionString)
-    .Options;
+requestHandler.ValidateRequest();
+ITransactionData transactionData = requestHandler.GetTransactionData();
 
+bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
+bool notReport = transactionData.GetRequestType() != RequestType.Report;
 
-using (var dbContext = new DbCemContext(optionsBuilder))
+if (validRequest & notReport)
 {
-    dbContext.Database.EnsureCreated();     
-    var categoryDataAccess = new EFCategoryDataAccess(dbContext);
-
-    var requestHandler = new ConsoleRequestHandler(args);
-    var cemanager = new ClientCEM(categoryDataAccess);
-
-    requestHandler.ValidateRequest();
-    ITransactionData transactionData = requestHandler.GetTransactionData();
-
-    bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
-    bool notReport = transactionData.GetRequestType() != RequestType.Report;
-    
-    if (validRequest & notReport)
-    {
-        cemanager.MakeTransaction(transactionData);
-    }
-    else
-    {
-        cemanager.ShowMonthlyReport();
-    }
-
-    dbContext.Database.EnsureDeleted();
+    cemanager.MakeTransaction(transactionData);
+}
+else
+{
+    cemanager.ShowMonthlyReport();
 }
 
 
