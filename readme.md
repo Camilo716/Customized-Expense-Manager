@@ -7,10 +7,19 @@ A console personal financial management app
 ```
 dotnet test
 ```
+
+## Set Database
+```
+cd ./CemApi
+dotnet ef migrations add 'Name'
+dotnet ef database update
+```
+Or use https://github.com/Camilo716/CEM_Database/ (WIP)
+
 -------------------------
 ## Manage your finances
 ```
-cd ConsoleClient
+cd ./ConsoleClient
 ```
 
 
