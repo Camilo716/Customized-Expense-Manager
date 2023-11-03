@@ -9,6 +9,11 @@ dotnet test
 ```
 -------------------------
 ## Manage your finances
+```
+cd ConsoleClient
+```
+
+
 ### Add a New Expense
 ```
 dotnet run --expense <category> <description> <amount>
