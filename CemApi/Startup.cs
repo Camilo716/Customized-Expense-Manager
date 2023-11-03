@@ -29,6 +29,16 @@ public class Startup
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAnyOrigin", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader() 
+                    .AllowAnyMethod();
+            });
+        });
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
     }
