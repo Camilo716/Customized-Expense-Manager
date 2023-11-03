@@ -8,7 +8,7 @@ public partial class EnpointsTests
     : IClassFixture<CustomWebApplicationFactory<Program>>
 {
     [Fact]
-    public async Task ClientPostTransactionWithUnexistingCategory()
+    public async Task PostTransactionWithUnexistingCategoryTest()
     {
         var client = _factory.CreateClient();
         TransactionDTO transactionDto = new TransactionDTO 

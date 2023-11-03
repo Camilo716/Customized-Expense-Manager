@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
@@ -15,13 +16,15 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
+        services.AddControllers()
+                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
         services.AddDbContext<DbCemContext>(
             opt => opt.UseSqlServer(_config.GetConnectionString("sqlserver_docker"))
         );
 
         services.AddScoped<TransactionService>();
+        services.AddScoped<CategoryService>();
         services.AddScoped<ICategoryRepository, EFCategoryDataAccess>();
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();

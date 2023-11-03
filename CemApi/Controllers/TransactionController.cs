@@ -1,4 +1,3 @@
-using CEM.Util;
 using CemApi.DTOs;
 using CemApi.Services;
 using Microsoft.AspNetCore.Mvc;

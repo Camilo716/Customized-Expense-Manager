@@ -11,4 +11,17 @@ public partial class EnpointsTests
     {
         _factory = factory;
     }
+    
+    [Theory]
+    [InlineData("/api/category")]
+    public async Task GetAllRecordsTest(string url)
+    {
+        HttpClient client = _factory.CreateClient();
+
+        HttpResponseMessage response = await client.GetAsync(url);
+
+        response.EnsureSuccessStatusCode();
+        Assert.Equal("application/json; charset=utf-8",
+            response.Content.Headers.ContentType?.ToString());
+    }
 }
