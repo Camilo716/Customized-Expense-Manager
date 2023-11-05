@@ -18,22 +18,27 @@ Or use https://github.com/Camilo716/CEM_Database/ (WIP)
 
 -------------------------
 ## Manage your finances
+### 1. Run CEM api
+```
+cd ./CemApi
+dotnet run
+```
+
+### 2. Use console client
 ```
 cd ./ConsoleClient
 ```
-
-
-### Add a New Expense
+Add a New Expense
 ```
 dotnet run --expense <category> <description> <amount>
 ```
 
-### Add a New Income
+Add a New Income
 ```
 dotnet run --income <category> <description> <amount>
 ```
 
-### Get a montlhy report
+Get a montlhy report
 ```
 dotnet run --report
 ```
