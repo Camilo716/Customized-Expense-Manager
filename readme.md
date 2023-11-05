@@ -18,7 +18,7 @@ Or use https://github.com/Camilo716/CEM_Database/ (WIP)
 
 -------------------------
 ## Manage your finances
-### 1. Run CEM api
+### 1. Run the API
 ```
 cd ./CemApi
 dotnet run
