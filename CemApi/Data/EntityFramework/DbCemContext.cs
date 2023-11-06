@@ -15,7 +15,7 @@ public class DbCemContext : DbContext
 
         modelBuilder.Entity<Category>(category =>
         {
-            category.HasKey(c => c.Name);
+            category.HasKey(c => c.Id);
             category.Property(e => e.Name).IsRequired();
 
             category.HasMany(c => c.TransactionsInCategory)
@@ -33,7 +33,7 @@ public class DbCemContext : DbContext
 
             transaction.HasOne(t => t.CategoryOfTransaction)
                         .WithMany(c => c.TransactionsInCategory)
-                        .HasForeignKey(t => t.CategoryID);
+                        .HasForeignKey(t => t.CategoryId);
         });
     }  
 }

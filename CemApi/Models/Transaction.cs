@@ -1,11 +1,11 @@
-using CemApi.Util;
+﻿using CemApi.Util;
 
 namespace CemApi.Models;
 
 public class Transaction
 {
     public Guid TransactionID {get;set;}
-    public string CategoryID {get;set;}
+    public int CategoryId {get;set;}
 
     public string Description {get;set;}
     public float Amount {get;set;}

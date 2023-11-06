@@ -27,7 +27,6 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public Category GetCategoryByName(string categoryName)
     {
-        // Only can exist one category with that name
-        return  _dbContext.Categories.Where(c => c.Name == categoryName).ToList()[0];
+        return  _dbContext.Categories.FirstOrDefault(c => c.Name == categoryName)!;
     }
 }
