@@ -1,6 +1,8 @@
+using System.Data.Common;
 using CEM.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,12 +19,19 @@ public class CustomWebApplicationFactory<TProgram>
         {
             ServiceDescriptor? dbContextDescriptor = services.SingleOrDefault(
                 d => d.ServiceType ==
-                    typeof(DbContextOptions<DbCemContext>));
+                    typeof(DbConnection));
             services.Remove(dbContextDescriptor!); 
 
-            services.AddDbContext<DbCemContext>(options => 
+            // services.AddDbContext<DbCemContext>(options => 
+            // {
+            //     options.UseInMemoryDatabase(new Guid().ToString());
+            // });
+
+            services.AddSingleton<DbConnection>(container =>
             {
-                options.UseInMemoryDatabase(new Guid().ToString());
+                var connection = new SqliteConnection("DataSource=:memory:");
+                connection.Open();
+                return connection;
             });
         });
     }
