@@ -16,7 +16,7 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public void CreateNewCategory(string name)
     {
-        _dbContext.Add(new Category(name));
+        _dbContext.Add(new Category() { Name = name });
         _dbContext.SaveChanges();
     }
 
