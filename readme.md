@@ -7,24 +7,38 @@ A console personal financial management app
 ```
 dotnet test
 ```
+
+## Set Database
+```
+cd ./CemApi
+dotnet ef migrations add 'Name'
+dotnet ef database update
+```
+Or use https://github.com/Camilo716/CEM_Database/ (WIP)
+
 -------------------------
 ## Manage your finances
+### 1. Run the API
 ```
-cd ConsoleClient
+cd ./CemApi
+dotnet run
 ```
 
-
-### Add a New Expense
+### 2. Use console client
+```
+cd ./ConsoleClient
+```
+Add a New Expense
 ```
 dotnet run --expense <category> <description> <amount>
 ```
 
-### Add a New Income
+Add a New Income
 ```
 dotnet run --income <category> <description> <amount>
 ```
 
-### Get a montlhy report
+Get a montlhy report
 ```
 dotnet run --report
 ```
