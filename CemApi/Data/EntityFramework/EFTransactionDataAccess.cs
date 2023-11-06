@@ -21,7 +21,7 @@ public class EFTransactionDataAccess : ITransactionRepository
             Description = Description,
             Amount = Amount,
             TransactionType = TransactionType,
-            CategoryOfTransaction = category
+            Category = category
         };
 
         _dbContext.Transactions.Add(transaction);
@@ -30,7 +30,7 @@ public class EFTransactionDataAccess : ITransactionRepository
 
     public IEnumerable<Transaction> GetAllTransactionsByTypeAndCategory(RequestType TransactionType, Category category)
     {
-        var transactions = _dbContext.Transactions.Where(t => t.TransactionType == TransactionType && t.CategoryOfTransaction == category);
+        var transactions = _dbContext.Transactions.Where(t => t.TransactionType == TransactionType && t.Category == category);
 
         return transactions;
     }

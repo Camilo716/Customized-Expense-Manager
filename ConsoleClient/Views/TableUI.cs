@@ -36,12 +36,12 @@ public class ConsoleTableUI : ITableUI
 
     private void DrawMainData()
     {
-        float income = 0;
-        float expense = 0;
+        double income = 0;
+        double expense = 0;
 
         foreach (var category in _categoriesWithTransactions)
         {
-            foreach (var transaction in category.TransactionsInCategory)
+            foreach (var transaction in category.Transactions)
             {
 
                 if (transaction.TransactionType == RequestType.Income)
@@ -63,17 +63,17 @@ public class ConsoleTableUI : ITableUI
 
     private void DrawFooterWithTotal()
     {
-        float totalEarned = 0;
-        float totalSpent = 0;
+        double totalEarned = 0;
+        double totalSpent = 0;
 
         foreach (var category in _categoriesWithTransactions)
         {
-            List<float> incomes = category.TransactionsInCategory
+            List<double> incomes = category.Transactions
                 .Where(t => t.TransactionType == RequestType.Income)
                 .Select(t => t.Amount)
                 .ToList();
 
-            List<float> expenses = category.TransactionsInCategory
+            List<double> expenses = category.Transactions
                 .Where(t => t.TransactionType == RequestType.Expense)
                 .Select(t => t.Amount)
                 .ToList();

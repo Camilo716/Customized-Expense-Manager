@@ -22,7 +22,7 @@ public class EFCategoryDataAccess : ICategoryRepository
 
     public IEnumerable<Category> GetAllCategories()
     {
-        return _dbContext.Categories.Include(c => c.TransactionsInCategory);
+        return _dbContext.Categories.Include(c => c.Transactions);
     }
 
     public Category GetCategoryByName(string categoryName)
