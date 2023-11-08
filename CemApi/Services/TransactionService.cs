@@ -38,14 +38,11 @@ public class TransactionService
     {
         List<Category> allCategories = _categoryRepository.GetAllCategories().ToList();
         
-        for (int category = 0; category < allCategories.Count ; category++)
+        foreach (Category categ in allCategories)
         {
-            if (allCategories[category].Name == categoryName)
-            {
+            if (categ.Name == categoryName)
                 return true;
-            }
         }
-
         return false;
     }
 }
