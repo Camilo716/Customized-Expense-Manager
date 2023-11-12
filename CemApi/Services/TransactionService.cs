@@ -17,8 +17,8 @@ public class TransactionService
 
     public void MakeTransaction(TransactionDTO transactionDto)
     {
-        TryCreateCategory(transactionDto.Category);
-        
+        TryCreateCategory(categoryName: transactionDto.Category);
+
         _transactionRepository.AddTransaction
         (
             transactionDto.Description,
@@ -37,7 +37,7 @@ public class TransactionService
     private bool CategoryAlreadyExist(string categoryName)
     {
         List<Category> allCategories = _categoryRepository.GetAllCategories().ToList();
-        
+
         foreach (Category categ in allCategories)
         {
             if (categ.Name == categoryName)

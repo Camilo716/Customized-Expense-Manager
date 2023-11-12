@@ -1,4 +1,5 @@
 using System.Data.Common;
+using ApiTests.Helpers.Database;
 using CEM.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -17,26 +18,7 @@ public class CustomWebApplicationFactory<TProgram>
 
         builder.ConfigureServices(services =>
         {
-            // ServiceDescriptor? dbConnectionDescriptor = services.SingleOrDefault(
-            //     d => d.ServiceType ==
-            //         typeof(DbConnection));
-            // services.Remove(dbConnectionDescriptor!); 
-            // services.AddSingleton<DbConnection>(container =>
-            // {
-            //     var connection = new SqliteConnection("DataSource=:memory:");
-            //     connection.Open();
-            //     return connection;
-            // });
 
-            ServiceDescriptor? dbContextDescriptor = services.SingleOrDefault(
-                d => d.ServiceType ==
-                    typeof(DbContextOptions<DbCemContext>));
-            services.Remove(dbContextDescriptor!); 
-
-            services.AddDbContext<DbCemContext>(options => 
-            {
-                options.UseInMemoryDatabase(new Guid().ToString());
-            });
         });
     }
 }

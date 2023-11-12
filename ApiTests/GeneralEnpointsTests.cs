@@ -1,3 +1,4 @@
+using ApiTests.Helpers.Database;
 using IntegrationTests.Helpers;
 
 namespace IntegrationTests;
@@ -10,8 +11,9 @@ public partial class EnpointsTests
     public EnpointsTests(CustomWebApplicationFactory<Program> factory)
     {
         _factory = factory;
+        ReinitializeDb();
     }
-    
+
     [Theory]
     [InlineData("/api/category")]
     public async Task GetAllRecordsTest(string url)
@@ -23,5 +25,12 @@ public partial class EnpointsTests
         response.EnsureSuccessStatusCode();
         Assert.Equal("application/json; charset=utf-8",
             response.Content.Headers.ContentType?.ToString());
+    }
+
+    private static void ReinitializeDb()
+    {
+        IDatabaseReinitializaerFactory dbReinitializerFactory = new AdoDatabasebReinitializerFactory();
+        IDatabaseReinitializer databaseReinitializer = dbReinitializerFactory.Create();
+        databaseReinitializer.ReinitializeDatabase();
     }
 }
