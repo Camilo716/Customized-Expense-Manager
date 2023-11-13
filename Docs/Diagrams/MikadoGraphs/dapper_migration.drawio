@@ -25,7 +25,7 @@
                 <mxCell id="11" value="" style="edgeStyle=none;html=1;" parent="1" source="5" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="12">
+                <mxCell id="13" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="5" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="Create Category dapper repository" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -37,8 +37,8 @@
                 <mxCell id="10" value="Create sp with queries&lt;br&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="365" y="620" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="Uncouple EntityFramework From tests" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="30" y="570" width="120" height="60" as="geometry"/>
+                <mxCell id="12" value="Uncouple EntityFramework From tests" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="600" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

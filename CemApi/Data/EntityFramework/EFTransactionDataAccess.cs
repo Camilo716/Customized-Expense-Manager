@@ -21,7 +21,7 @@ public class EFTransactionDataAccess : ITransactionRepository
             Description = Description,
             Amount = Amount,
             TransactionType = TransactionType,
-            Category = category
+            CategoryId = category.Id
         };
 
         _dbContext.Transactions.Add(transaction);

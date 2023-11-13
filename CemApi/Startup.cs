@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
+using CemApi.Data.Dapper;
 using CemApi.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,7 +26,10 @@ public class Startup
 
         services.AddScoped<TransactionService>();
         services.AddScoped<CategoryService>();
-        services.AddScoped<ICategoryRepository, EFCategoryDataAccess>();
+        services.AddScoped<ICategoryRepository>(provider =>
+        {
+            return new DapperCategoryRepository(_config.GetConnectionString("sqlserver_docker")!);
+        });
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
 
