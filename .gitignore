@@ -29,6 +29,5 @@ obj/
 .history
 .ionide
 
-*/Migrations/*
-
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudiocode
+Migrations
