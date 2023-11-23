@@ -18,7 +18,7 @@ dotnet ef migrations add 'Name'
 dotnet ef database update
 ```
 
-Or use <https://github.com/Camilo716/CEM_Database/> (WIP)
+Or use <https://github.com/Camilo716/CEM_Database/>
 
 -------------------------
 
