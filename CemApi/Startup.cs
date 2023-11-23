@@ -1,9 +1,12 @@
+using System.Data;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
 using CemApi.Data.Dapper;
 using CemApi.Services;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 public class Startup
@@ -17,19 +20,21 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        string _sqlServerCnxString = _config.GetConnectionString("sqlserver_docker")!;
+
         services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
         services.AddDbContext<DbCemContext>(
-            opt => opt.UseSqlServer(_config.GetConnectionString("sqlserver_docker"))
+            opt => opt.UseSqlServer(_sqlServerCnxString)
+        );
+        services.AddScoped<IDbConnection>(
+            provider => new SqlConnection(_sqlServerCnxString)
         );
 
         services.AddScoped<TransactionService>();
         services.AddScoped<CategoryService>();
-        services.AddScoped<ICategoryRepository>(provider =>
-        {
-            return new DapperCategoryRepository(_config.GetConnectionString("sqlserver_docker")!);
-        });
+        services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
 

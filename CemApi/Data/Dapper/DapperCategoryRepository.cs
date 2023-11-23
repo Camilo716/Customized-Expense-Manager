@@ -8,20 +8,19 @@ namespace CemApi.Data.Dapper;
 
 public class DapperCategoryRepository : ICategoryRepository
 {
-    private readonly string _connectionString;
+    private readonly IDbConnection _connection;
 
-    public DapperCategoryRepository(string connectionString)
+    public DapperCategoryRepository(IDbConnection connection)
     {
-        _connectionString = connectionString;
+        _connection = connection;
     }
 
     public void CreateNewCategory(string name)
     {
-        using var connection = new SqlConnection(_connectionString);
         var parameters = new DynamicParameters();
         parameters.Add("Name", name);
 
-        connection.Execute (
+        _connection.Execute (
             "InsertCategory",
             parameters,
             commandType: CommandType.StoredProcedure);
@@ -29,9 +28,7 @@ public class DapperCategoryRepository : ICategoryRepository
 
     public IEnumerable<Category> GetAllCategories()
     {
-        using var connection = new SqlConnection(_connectionString);
-
-        IEnumerable<Category> categories = connection.Query<Category>(
+        IEnumerable<Category> categories = _connection.Query<Category>(
             "GetAllCategories",
             commandType: CommandType.StoredProcedure
         );
@@ -41,11 +38,10 @@ public class DapperCategoryRepository : ICategoryRepository
 
     public Category GetCategoryByName(string categoryName)
     {
-        using var connection = new SqlConnection(_connectionString);
         var parameters = new DynamicParameters();
         parameters.Add("CategoryName", categoryName);
 
-        Category? category = connection.QuerySingleOrDefault<Category> (
+        Category? category = _connection.QuerySingleOrDefault<Category> (
             "GetCategoryByName",
             parameters,
             commandType: CommandType.StoredProcedure
