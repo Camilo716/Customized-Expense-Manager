@@ -1,6 +1,6 @@
 namespace CemApi.Util;
 
-public enum RequestType
+public enum TransactionType
 {
     Expense,
     Income,

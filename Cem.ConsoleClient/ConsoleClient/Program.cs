@@ -7,8 +7,8 @@ var requestHandler = new ConsoleRequestHandler(args);
 requestHandler.ValidateRequest();
 ITransactionData transactionData = requestHandler.GetTransactionData();
 
-bool validRequest = transactionData.GetRequestType() != RequestType.Invalid;
-bool notReport = transactionData.GetRequestType() != RequestType.Report;
+bool validRequest = transactionData.GetRequestType() != TransactionType.Invalid;
+bool notReport = transactionData.GetRequestType() != TransactionType.Report;
 
 if (validRequest & notReport)
 {

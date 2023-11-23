@@ -5,9 +5,9 @@ namespace CemApi.DTOs;
 public interface ITransactionData
 {  
     void SetData(string category, string Description, string value);
-    void SetRequestType(RequestType requestType);
+    void SetRequestType(TransactionType requestType);
     string GetCategory();
     string GetDescription();
     string GetAmount();
-    RequestType GetRequestType();
+    TransactionType GetRequestType();
 }

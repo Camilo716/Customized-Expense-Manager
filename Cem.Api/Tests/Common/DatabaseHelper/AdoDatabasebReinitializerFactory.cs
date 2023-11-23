@@ -1,6 +1,6 @@
-namespace ApiTests.Helpers.Database;
+namespace Common.DatabaseHelpers;
 
-public class AdoDatabasebReinitializerFactory : IDatabaseReinitializaerFactory
+public class AdoDatabasebReinitializerFactory : IDatabaseReinitializerFactory
 {
     public IDatabaseReinitializer Create()
     {

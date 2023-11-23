@@ -1,7 +1,6 @@
-
 using Microsoft.Data.SqlClient;
 
-namespace ApiTests.Helpers.Database;
+namespace Common.DatabaseHelpers;
 
 public class AdoDatabaseReinitalizer : IDatabaseReinitializer
 {

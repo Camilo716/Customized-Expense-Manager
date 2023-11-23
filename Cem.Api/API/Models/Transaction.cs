@@ -10,7 +10,7 @@ public class Transaction
 
     public double Amount { get; set; }
 
-    public RequestType TransactionType { get; set; }
+    public TransactionType TransactionType { get; set; }
 
     public int? CategoryId { get; set; }
 

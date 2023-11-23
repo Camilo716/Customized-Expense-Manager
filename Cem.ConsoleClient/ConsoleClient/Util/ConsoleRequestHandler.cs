@@ -7,7 +7,7 @@ public class ConsoleRequestHandler
 {
     private readonly string[] _receivedArgs;
     private ITransactionData _transactionData;
-    private RequestType _requestTypeUnchecked;
+    private TransactionType _requestTypeUnchecked;
 
     public ConsoleRequestHandler(string[] args)
     {
@@ -43,18 +43,18 @@ public class ConsoleRequestHandler
         switch (_receivedArgs[0])
         {
             case "--expense":
-                _requestTypeUnchecked = RequestType.Expense;
+                _requestTypeUnchecked = TransactionType.Expense;
                 return true;
     
             case "--income":
-                _requestTypeUnchecked = RequestType.Income;
+                _requestTypeUnchecked = TransactionType.Income;
                 return true;
 
             case "--report":
-                _requestTypeUnchecked = RequestType.Report;
+                _requestTypeUnchecked = TransactionType.Report;
                 return true;
             default:
-                _requestTypeUnchecked = RequestType.Invalid;
+                _requestTypeUnchecked = TransactionType.Invalid;
                 return false;
         }
     }
@@ -70,7 +70,7 @@ public class ConsoleRequestHandler
 
     private bool RequestIsReport()
     {
-        return _requestTypeUnchecked == RequestType.Report;
+        return _requestTypeUnchecked == TransactionType.Report;
     }
 
     private void SetTransactionValues()

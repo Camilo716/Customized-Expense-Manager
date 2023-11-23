@@ -16,7 +16,7 @@ public partial class EnpointsTests
             Category = "New category",
             Description = "Transaction descripcion",
             Amount = "1000",
-            RequestType = RequestType.Income
+            RequestType = TransactionType.Income
         };
         HttpContent transaction = TransactionUtilities.GetTransactionHttpContent(transactionDto);
 

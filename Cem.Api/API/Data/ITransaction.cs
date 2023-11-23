@@ -5,5 +5,5 @@ using CemApi.Util;
 
 public interface ITransactionRepository
 {
-    void AddTransaction(string Description, float Amount, RequestType TransactionType, Category category);
+    void AddTransaction(string Description, float Amount, TransactionType TransactionType, Category category);
 }

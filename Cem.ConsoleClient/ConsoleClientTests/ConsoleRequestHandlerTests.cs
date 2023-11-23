@@ -10,28 +10,28 @@ public class ConsoleRequestHandlerTests
     [InlineData
         (
         new string[]{"--expense", "eCategory", "eDescription","100"},
-        RequestType.Expense
+        TransactionType.Expense
         )
     ]
     [InlineData
         (
         new string[]{"--income","exCategory","exDescription","10000"},
-        RequestType.Income
+        TransactionType.Income
         )
     ]
     [InlineData
         (
         new string[]{"--report"},
-        RequestType.Report
+        TransactionType.Report
         )
     ]
     [InlineData
         (
         new string[]{"--income","eCategory","12341"},
-        RequestType.Invalid
+        TransactionType.Invalid
         )
     ]
-    public void ValidateRequest(string[] args, RequestType expectedRequestType)
+    public void ValidateRequest(string[] args, TransactionType expectedRequestType)
     {
         var requestHandler = new ConsoleRequestHandler(args);
 

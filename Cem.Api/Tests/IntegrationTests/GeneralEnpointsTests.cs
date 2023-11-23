@@ -1,4 +1,4 @@
-using ApiTests.Helpers.Database;
+using Common.DatabaseHelpers;
 using IntegrationTests.Helpers;
 
 namespace IntegrationTests;
@@ -29,7 +29,7 @@ public partial class EnpointsTests
 
     private static void ReinitializeDb()
     {
-        IDatabaseReinitializaerFactory dbReinitializerFactory = new AdoDatabasebReinitializerFactory();
+        IDatabaseReinitializerFactory dbReinitializerFactory = new AdoDatabasebReinitializerFactory();
         IDatabaseReinitializer databaseReinitializer = dbReinitializerFactory.Create();
         databaseReinitializer.ReinitializeDatabase();
     }

@@ -44,7 +44,7 @@ public class ConsoleTableUI : ITableUI
             foreach (var transaction in category.Transactions)
             {
 
-                if (transaction.TransactionType == RequestType.Income)
+                if (transaction.TransactionType == TransactionType.Income)
                 {
                     income += transaction.Amount;
                 }
@@ -69,12 +69,12 @@ public class ConsoleTableUI : ITableUI
         foreach (var category in _categoriesWithTransactions)
         {
             List<double> incomes = category.Transactions
-                .Where(t => t.TransactionType == RequestType.Income)
+                .Where(t => t.TransactionType == TransactionType.Income)
                 .Select(t => t.Amount)
                 .ToList();
 
             List<double> expenses = category.Transactions
-                .Where(t => t.TransactionType == RequestType.Expense)
+                .Where(t => t.TransactionType == TransactionType.Expense)
                 .Select(t => t.Amount)
                 .ToList();
 

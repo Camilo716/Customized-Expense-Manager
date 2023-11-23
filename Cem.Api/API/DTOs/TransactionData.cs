@@ -5,7 +5,7 @@ namespace CEM.Util;
 
 public class TransactionData : ITransactionData
 {   
-    private RequestType _requestType = RequestType.Invalid;
+    private TransactionType _requestType = TransactionType.Invalid;
     private string _category;
     private string _Description;
     private string _Amount;
@@ -17,12 +17,12 @@ public class TransactionData : ITransactionData
         _Amount = Amount;
     }
 
-    public void SetRequestType(RequestType requestType)
+    public void SetRequestType(TransactionType requestType)
     {
         _requestType = requestType;
     }
 
-    public RequestType GetRequestType()
+    public TransactionType GetRequestType()
     {
         return _requestType;
     }

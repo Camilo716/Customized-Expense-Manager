@@ -1,4 +1,4 @@
-namespace ApiTests.Helpers.Database;
+namespace Common.DatabaseHelpers;
 
 public interface IDatabaseReinitializer
 {
