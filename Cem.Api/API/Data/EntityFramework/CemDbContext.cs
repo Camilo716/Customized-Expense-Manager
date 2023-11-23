@@ -1,4 +1,4 @@
-﻿using CemApi.Models;
+﻿using Cem.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CEM.Context;

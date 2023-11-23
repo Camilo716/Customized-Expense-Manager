@@ -1,8 +1,3 @@
-using CEM.Repositories;
-using CemApi.Models;
-using CemApi.Util;
-using Moq;
-
 namespace UnitTests;
 
 public class MonthlyBalanceReportTests

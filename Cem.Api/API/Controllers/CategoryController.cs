@@ -1,4 +1,4 @@
-using CemApi.Models;
+using Cem.Api.Models;
 using CemApi.Services;
 using Microsoft.AspNetCore.Mvc;
 

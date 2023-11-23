@@ -1,5 +1,5 @@
-using CemApi.Models;
-using CemApi.Util;
+using Cem.Api.Models;
+using Cem.Api.Common;
 
 public class SampleDataSeeder
 {

@@ -1,6 +1,6 @@
 using CEM.Repositories;
 using Microsoft.EntityFrameworkCore;
-using CemApi.Models;
+using Cem.Api.Models;
 using CEM.Context;
 
 namespace CEM.DataAccess;

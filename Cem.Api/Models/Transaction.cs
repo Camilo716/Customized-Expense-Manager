@@ -1,10 +1,10 @@
-﻿using CemApi.Util;
+﻿using Cem.Api.Common;
 
-namespace CemApi.Models;
+namespace Cem.Api.Models;
 
 public class Transaction
 {
-   public int Id { get; set; }
+    public int Id { get; set; }
 
     public string Description { get; set; } = null!;
 

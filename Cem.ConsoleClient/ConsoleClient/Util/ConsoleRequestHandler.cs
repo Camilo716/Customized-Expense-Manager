@@ -1,5 +1,5 @@
 using CemApi.DTOs;
-using CemApi.Util;
+using Cem.Api.Common;
 
 namespace CEM.Util;
 

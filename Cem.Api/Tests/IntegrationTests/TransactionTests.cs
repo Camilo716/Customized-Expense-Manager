@@ -1,6 +1,6 @@
 using CemApi.DTOs;
-using CemApi.Util;
 using IntegrationTests.Helpers;
+using Cem.Api.Common;
 
 namespace IntegrationTests;
 

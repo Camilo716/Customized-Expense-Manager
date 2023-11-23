@@ -1,6 +1,6 @@
 namespace CEM.Repositories;
 
-using CemApi.Models;
+using Cem.Api.Models;
 using System.Collections.Generic;
 
 public interface ICategoryRepository : IAllCategoriesRepository

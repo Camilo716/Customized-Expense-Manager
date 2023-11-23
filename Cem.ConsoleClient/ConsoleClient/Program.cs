@@ -1,6 +1,6 @@
 ﻿using CEM.Util;
-using CemApi.Util;
 using CemApi.DTOs;
+using Cem.Api.Common;
 
 var requestHandler = new ConsoleRequestHandler(args);
 

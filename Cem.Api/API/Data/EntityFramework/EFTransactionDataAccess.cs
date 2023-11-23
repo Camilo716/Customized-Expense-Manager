@@ -1,6 +1,6 @@
 using CEM.Repositories;
-using CemApi.Util;
-using CemApi.Models;
+using Cem.Api.Common;
+using Cem.Api.Models;
 using CEM.Context;
 
 namespace CEM.DataAccess;

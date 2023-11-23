@@ -1,8 +1,7 @@
 using System.Data;
 using CEM.Repositories;
-using CemApi.Models;
+using Cem.Api.Models;
 using Dapper;
-using Microsoft.Data.SqlClient;
 
 namespace CemApi.Data.Dapper;
 

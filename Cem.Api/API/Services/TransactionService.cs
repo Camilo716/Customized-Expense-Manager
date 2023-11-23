@@ -1,6 +1,6 @@
 using CEM.Repositories;
 using CemApi.DTOs;
-using CemApi.Models;
+using Cem.Api.Models;
 
 namespace CemApi.Services;
 

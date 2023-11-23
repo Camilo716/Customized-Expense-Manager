@@ -1,6 +1,5 @@
 using System.Text;
 using CemApi.DTOs;
-using CemApi.Util;
 using Newtonsoft.Json;
 
 namespace IntegrationTests.Helpers;
