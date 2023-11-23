@@ -29,7 +29,7 @@ public partial class EnpointsTests
 
     private static void ReinitializeDb()
     {
-        IDatabaseReinitializerFactory dbReinitializerFactory = new AdoDatabasebReinitializerFactory();
+        IDatabaseReinitializerFactory dbReinitializerFactory = new AdoDatabaseReinitializerFactory();
         IDatabaseReinitializer databaseReinitializer = dbReinitializerFactory.Create();
         databaseReinitializer.ReinitializeDatabase();
     }

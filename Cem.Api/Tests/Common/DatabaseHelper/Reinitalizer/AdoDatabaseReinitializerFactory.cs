@@ -1,6 +1,6 @@
 namespace Common.DatabaseHelpers;
 
-public class AdoDatabasebReinitializerFactory : IDatabaseReinitializerFactory
+public class AdoDatabaseReinitializerFactory : IDatabaseReinitializerFactory
 {
     public IDatabaseReinitializer Create()
     {
