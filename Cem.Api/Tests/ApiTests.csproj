@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CemApi\CemApi.csproj" />
+    <ProjectReference Include="..\API\CemApi.csproj" />
   </ItemGroup>
 
 </Project>

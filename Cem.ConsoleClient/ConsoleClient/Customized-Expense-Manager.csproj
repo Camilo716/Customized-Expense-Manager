@@ -30,6 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CemApi\CemApi.csproj" />
+    <ProjectReference Include="..\..\Cem.Api\API\CemApi.csproj" />
   </ItemGroup>
 </Project>
