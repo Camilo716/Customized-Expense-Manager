@@ -9,8 +9,8 @@ dotnet test
 ```
 
 ## Set Database
-```
-cd ./CemApi
+```bash
+cd ./Cem.Api/API
 dotnet ef migrations add 'Name'
 dotnet ef database update
 ```
@@ -19,14 +19,14 @@ Or use https://github.com/Camilo716/CEM_Database/ (WIP)
 -------------------------
 ## Manage your finances
 ### 1. Run the API
-```
-cd ./CemApi
+```bash
+cd ./Cem.Api/API
 dotnet run
 ```
 
 ### 2. Use console client
 ```
-cd ./ConsoleClient
+cd ./Cem.ConsoleClient/ConsoleClient
 ```
 Add a New Expense
 ```
