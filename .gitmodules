@@ -1,0 +1,3 @@
+[submodule "Cem.Database"]
+	path = Cem.Database
+	url = https://github.com/Camilo716/CEM_Database
