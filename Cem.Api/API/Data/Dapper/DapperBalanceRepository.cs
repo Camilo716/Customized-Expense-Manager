@@ -13,9 +13,9 @@ public class DapperBalanceRepository : IBalanceRepository
         _connection = connection;
     }
 
-    public async Task<MonthlyBalanceReport> GenerateMonthlyBalanceReport(MonthlyBalanceReport monthlyBalanceReport)
+    public async Task<MonthlyBalanceReport> GenerateMonthlyBalanceReport(BalanceReportCreationDTO balanceReportCreationDTO)
     {
-        DynamicParameters parameters = GenerateParameters(monthlyBalanceReport.Date);
+        DynamicParameters parameters = GenerateParameters(balanceReportCreationDTO.Date);
 
         using SqlMapper.GridReader results = await _connection.QueryMultipleAsync(
             "MonthlyBalanceReport",
@@ -23,7 +23,7 @@ public class DapperBalanceRepository : IBalanceRepository
             commandType: CommandType.StoredProcedure
         );
 
-        return BuildBalanceModelFromResults(results, parameters, monthlyBalanceReport);
+        return BuildBalanceModelFromResults(results, parameters, balanceReportCreationDTO.Date);
     }
 
     private DynamicParameters GenerateParameters(DateOnly date)
@@ -35,16 +35,19 @@ public class DapperBalanceRepository : IBalanceRepository
         return parameters;
     }
 
-    private MonthlyBalanceReport BuildBalanceModelFromResults(SqlMapper.GridReader results, DynamicParameters parameters, MonthlyBalanceReport monthlyBalanceReport)
+    private MonthlyBalanceReport BuildBalanceModelFromResults(SqlMapper.GridReader results, DynamicParameters parameters, DateOnly date)
     {
         List<BalancePerCategory> monthlyBalancesPerCategory = results.Read<BalancePerCategory>().ToList();
 
         var totalEarned = parameters.Get<decimal>("TotalEarned");
         var totalSpent = parameters.Get<decimal>("TotalSpent");
-
-        monthlyBalanceReport.MonthlyBalancesPerCategory = monthlyBalancesPerCategory; 
-        monthlyBalanceReport.TotalEarned = Convert.ToDouble(totalEarned);
-        monthlyBalanceReport.TotalSpent = Convert.ToDouble(totalSpent);
-        return monthlyBalanceReport;
+        
+        return new MonthlyBalanceReport
+        {
+            MonthlyBalancesPerCategory = monthlyBalancesPerCategory,
+            TotalEarned = Convert.ToDouble(totalEarned),
+            TotalSpent = Convert.ToDouble(totalSpent),
+            Date = date
+        };
     }
 }

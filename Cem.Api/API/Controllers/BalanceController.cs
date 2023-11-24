@@ -23,11 +23,11 @@ public class BalanceController : ControllerBase
     public async Task<ActionResult<MonthlyBalanceReport>> GetMonthlyBalanceReport()
     {
         DateTime date = _dateManager.GetCurrentDate();
-        var monthlyBalanceReport = new MonthlyBalanceReport
+        var balanceReportCreationDTO = new BalanceReportCreationDTO
         {
             Date = new DateOnly(date.Year, date.Month, 1)
         };
 
-        return await _balanceService.GenerateMonthlyBalanceReport(monthlyBalanceReport);
+        return await _balanceService.GenerateMonthlyBalanceReport(balanceReportCreationDTO);
     }
 }
