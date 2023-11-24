@@ -4,5 +4,5 @@ namespace CemApi.Data;
 
 public interface IBalanceRepository
 {
-    Task<MonthlyBalanceReport> GetMonthlyBalanceReport();
+    Task<MonthlyBalanceReport> GenerateMonthlyBalanceReport(MonthlyBalanceReport monthlyBalanceReport);
 }

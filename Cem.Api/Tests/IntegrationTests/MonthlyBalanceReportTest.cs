@@ -3,6 +3,7 @@ using Cem.Api.Common;
 using CemApi.DTOs;
 using CemApi.DTOs.Reports.MonthlyBalance;
 using IntegrationTests.Helpers;
+using Microsoft.VisualBasic;
 
 namespace IntegrationTests;
 
@@ -26,10 +27,12 @@ public partial class EnpointsTests
     private async Task ClientSaveSomeTransactions(HttpClient client)
     {
         HttpContent transaction1 = TransactionUtilities.GetTransactionHttpContent(
-            new TransactionDTO { Category = "Category 1", Description = "Transaction 1 desc", Amount = "50", RequestType = TransactionType.Income }
+            new TransactionDTO { 
+                Category = "Category 1", Description = "Transaction 1 desc", Amount = "50", RequestType = TransactionType.Income }
         );
         HttpContent transaction2 = TransactionUtilities.GetTransactionHttpContent(
-            new TransactionDTO { Category = "Category 1", Description = "Transaction 2 desc", Amount = "10", RequestType = TransactionType.Expense }
+            new TransactionDTO { 
+                Category = "Category 1", Description = "Transaction 2 desc", Amount = "10", RequestType = TransactionType.Expense }
         );
         HttpContent transaction3 = TransactionUtilities.GetTransactionHttpContent(
             new TransactionDTO { Category = "Category 1", Description = "Transaction 3 desc", Amount = "20", RequestType = TransactionType.Income }
@@ -51,7 +54,7 @@ public partial class EnpointsTests
                 new (){
                     Category = "Category 1",
                     Earned = 70,
-                    Spent = 10,
+                    Spent = 10
                 },
                 new (){
                     Category = "Category 2",
@@ -60,7 +63,8 @@ public partial class EnpointsTests
                 }
             },
             TotalSpent = 10,
-            TotalEarned = 110
+            TotalEarned = 110,
+            Date = new DateOnly(2023, 12, 1)
         };
     }
 }

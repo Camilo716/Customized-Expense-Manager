@@ -11,6 +11,7 @@ public class Transaction
     public double Amount { get; set; }
 
     public TransactionType TransactionType { get; set; }
+    public DateTime Date { get; set; }
 
     public int? CategoryId { get; set; }
 

@@ -1,5 +1,6 @@
 using System.Data;
 using System.Text.Json.Serialization;
+using Cem.Api.DateManagement;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
@@ -40,6 +41,8 @@ public class Startup
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
         services.AddScoped<IBalanceRepository, DapperBalanceRepository>();
+
+        services.AddScoped<IDateManager, DateManager>(); 
 
         services.AddCors(options =>
         {

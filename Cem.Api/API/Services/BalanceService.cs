@@ -12,8 +12,8 @@ public class BalanceService
         _balanceRepository = balanceRepository;
     }
 
-    public async Task<MonthlyBalanceReport> GenerateMonthlyBalanceReport()
-    {
-        return await _balanceRepository.GetMonthlyBalanceReport();
+    public async Task<MonthlyBalanceReport> GenerateMonthlyBalanceReport(MonthlyBalanceReport monthlyBalanceReport)
+    { 
+        return await _balanceRepository.GenerateMonthlyBalanceReport(monthlyBalanceReport);
     }
 }

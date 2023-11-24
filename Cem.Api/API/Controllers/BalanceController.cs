@@ -1,5 +1,6 @@
 namespace CemApi.Controllers;
 
+using Cem.Api.DateManagement;
 using CemApi.DTOs.Reports.MonthlyBalance;
 using CemApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -9,16 +10,24 @@ using Microsoft.AspNetCore.Mvc;
 public class BalanceController : ControllerBase
 {
     private readonly BalanceService _balanceService;
+    private readonly IDateManager _dateManager;
 
-    public BalanceController(BalanceService balanceService)
+    public BalanceController(BalanceService balanceService, IDateManager dateManager)
     {
         _balanceService = balanceService;
+        _dateManager = dateManager;
     }
 
     [HttpGet]
     [Route("MonthlyBalanceReport")]
     public async Task<ActionResult<MonthlyBalanceReport>> GetMonthlyBalanceReport()
     {
-        return await _balanceService.GenerateMonthlyBalanceReport();
+        DateTime date = _dateManager.GetCurrentDate();
+        var monthlyBalanceReport = new MonthlyBalanceReport
+        {
+            Date = new DateOnly(date.Year, date.Month, 1)
+        };
+
+        return await _balanceService.GenerateMonthlyBalanceReport(monthlyBalanceReport);
     }
 }

@@ -1,6 +1,7 @@
 using CEM.Repositories;
 using CemApi.DTOs;
 using Cem.Api.Models;
+using Cem.Api.DateManagement;
 
 namespace CemApi.Services;
 
@@ -8,23 +9,31 @@ public class TransactionService
 {
     private readonly ITransactionRepository _transactionRepository;
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IDateManager _dateManager;
 
-    public TransactionService(ITransactionRepository transactionRepository, ICategoryRepository categoryRepository)
+    public TransactionService(ITransactionRepository transactionRepository, ICategoryRepository categoryRepository, IDateManager dateManager)
     {
         _transactionRepository = transactionRepository;
         _categoryRepository = categoryRepository;
+        _dateManager = dateManager;
     }
 
     public void MakeTransaction(TransactionDTO transactionDto)
     {
         TryCreateCategory(categoryName: transactionDto.Category);
 
-        _transactionRepository.AddTransaction
+        Category categoryOftransaction =_categoryRepository.GetCategoryByName(transactionDto.Category);
+
+        _transactionRepository.SaveTransaction
         (
-            transactionDto.Description,
-            float.Parse(transactionDto.Amount),
-            transactionDto.RequestType,
-            _categoryRepository.GetCategoryByName(transactionDto.Category)
+            new Transaction 
+            {
+                Description = transactionDto.Description,
+                Amount = float.Parse(transactionDto.Amount),
+                TransactionType = transactionDto.RequestType,
+                Date = _dateManager.GetCurrentDate(),
+                CategoryId = categoryOftransaction.Id
+            }
         );
     }
 

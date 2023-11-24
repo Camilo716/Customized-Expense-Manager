@@ -14,16 +14,8 @@ public class EFTransactionDataAccess : ITransactionRepository
         _dbContext = dbContext;
     }
 
-    public void AddTransaction(string Description, float Amount, TransactionType TransactionType, Category category)
+    public void SaveTransaction(Transaction transaction)
     {
-        Transaction transaction = new Transaction
-        {
-            Description = Description,
-            Amount = Amount,
-            TransactionType = TransactionType,
-            CategoryId = category.Id
-        };
-
         _dbContext.Transactions.Add(transaction);
         _dbContext.SaveChanges();
     }
