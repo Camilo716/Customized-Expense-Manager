@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using CEM.Context;
 using CEM.DataAccess;
 using CEM.Repositories;
+using CemApi.Data;
 using CemApi.Data.Dapper;
 using CemApi.Services;
 using Microsoft.Data.SqlClient;
@@ -27,15 +28,18 @@ public class Startup
         services.AddDbContext<DbCemContext>(
             opt => opt.UseSqlServer(_sqlServerCnxString)
         );
-        services.AddScoped<IDbConnection>(
+        services.AddTransient<IDbConnection>(
             provider => new SqlConnection(_sqlServerCnxString)
         );
 
         services.AddScoped<TransactionService>();
         services.AddScoped<CategoryService>();
+        services.AddScoped<BalanceService>();
+
         services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
         services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
+        services.AddScoped<IBalanceRepository, DapperBalanceRepository>();
 
         services.AddCors(options =>
         {

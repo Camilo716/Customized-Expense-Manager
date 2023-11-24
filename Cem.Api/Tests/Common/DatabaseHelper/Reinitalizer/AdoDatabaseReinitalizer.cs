@@ -10,6 +10,7 @@ public class AdoDatabaseReinitalizer : IDatabaseReinitializer
     {
         _connection = connection;    
     }
+
     public void ReinitializeDatabase()
     {
         using var sqlConnection = new SqlConnection(_connection);

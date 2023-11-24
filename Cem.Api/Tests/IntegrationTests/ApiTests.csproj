@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\API\CemApi.csproj" />
     <ProjectReference Include="..\Common\DatabaseHelper\DatabaseHelper.csproj" />
+    <ProjectReference Include="..\Common\HttpHelper\HttpHelper.csproj" />
   </ItemGroup>
 
 </Project>

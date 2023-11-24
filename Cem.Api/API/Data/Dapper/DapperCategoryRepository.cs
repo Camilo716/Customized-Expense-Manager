@@ -16,6 +16,7 @@ public class DapperCategoryRepository : ICategoryRepository
 
     public void CreateNewCategory(string name)
     {
+        _connection.Open();
         var parameters = new DynamicParameters();
         parameters.Add("Name", name);
 
@@ -23,6 +24,7 @@ public class DapperCategoryRepository : ICategoryRepository
             "InsertCategory",
             parameters,
             commandType: CommandType.StoredProcedure);
+        _connection.Close();
     }
 
     public IEnumerable<Category> GetAllCategories()
