@@ -31,7 +31,7 @@ public class DapperBalanceRepository : IBalanceRepository
         var parameters = new DynamicParameters();
         parameters.Add("TotalEarned", dbType: DbType.Decimal, direction: ParameterDirection.Output);
         parameters.Add("TotalSpent", dbType: DbType.Decimal, direction: ParameterDirection.Output);
-        parameters.Add("Date", date, dbType: DbType.Date, direction: ParameterDirection.Input);
+        parameters.Add("Date", date.ToString("yyyy-MM-dd"), dbType: DbType.Date, direction: ParameterDirection.Input);
         return parameters;
     }
 
