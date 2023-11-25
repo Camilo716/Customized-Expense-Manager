@@ -4,12 +4,6 @@ A console personal financial management app
 
 -------------------------
 
-## Run Tests
-
-```
-dotnet test
-```
-
 ## Set Database
 
 ```bash
@@ -21,6 +15,12 @@ dotnet ef database update
 Or use <https://github.com/Camilo716/CEM_Database/>
 
 -------------------------
+
+## Run Tests
+
+```
+dotnet test
+```
 
 ## Manage your finances
 
