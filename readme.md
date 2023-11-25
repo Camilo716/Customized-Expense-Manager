@@ -49,8 +49,12 @@ Add a New Income
 dotnet run --income <category> <description> <amount>
 ```
 
-Get a montlhy report
+Get a montlhy balance report
 
 ``` bash
 dotnet run --report
 ```
+<div align="center">
+  <img src="https://github.com/Camilo716/Customized-Expense-Manager/assets/105132863/5ba995f3-50cc-4f11-8938-015a2a5e15db" alt="CEM Image">
+</div>
+
