@@ -64,7 +64,7 @@ public partial class EnpointsTests
             },
             TotalSpent = 10,
             TotalEarned = 110,
-            Date = new DateOnly(2023, 12, 1)
+            Date = new DateTime(2023, 12, 1)
         };
     }
 }

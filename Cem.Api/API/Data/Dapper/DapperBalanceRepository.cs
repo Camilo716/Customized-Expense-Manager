@@ -26,7 +26,7 @@ public class DapperBalanceRepository : IBalanceRepository
         return BuildBalanceModelFromResults(results, parameters, balanceReportCreationDTO.Date);
     }
 
-    private DynamicParameters GenerateParameters(DateOnly date)
+    private DynamicParameters GenerateParameters(DateTime date)
     {
         var parameters = new DynamicParameters();
         parameters.Add("TotalEarned", dbType: DbType.Decimal, direction: ParameterDirection.Output);
@@ -35,7 +35,7 @@ public class DapperBalanceRepository : IBalanceRepository
         return parameters;
     }
 
-    private MonthlyBalanceReport BuildBalanceModelFromResults(SqlMapper.GridReader results, DynamicParameters parameters, DateOnly date)
+    private MonthlyBalanceReport BuildBalanceModelFromResults(SqlMapper.GridReader results, DynamicParameters parameters, DateTime date)
     {
         List<BalancePerCategory> monthlyBalancesPerCategory = results.Read<BalancePerCategory>().ToList();
 

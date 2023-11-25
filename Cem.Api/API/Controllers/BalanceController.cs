@@ -22,10 +22,9 @@ public class BalanceController : ControllerBase
     [Route("MonthlyBalanceReport")]
     public async Task<ActionResult<MonthlyBalanceReport>> GetMonthlyBalanceReport()
     {
-        DateTime date = _dateManager.GetCurrentDate();
         var balanceReportCreationDTO = new BalanceReportCreationDTO
         {
-            Date = new DateOnly(date.Year, date.Month, 1)
+            Date = _dateManager.GetCurrentDate()
         };
 
         return await _balanceService.GenerateMonthlyBalanceReport(balanceReportCreationDTO);
