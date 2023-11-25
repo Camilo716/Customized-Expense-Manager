@@ -1,4 +1,4 @@
-# CUSTOMIZED EXPENSE MANAGER (CEM)
+# CUSTOMIZED EXPENSE MANAGER
 
 A console personal financial management app
 
