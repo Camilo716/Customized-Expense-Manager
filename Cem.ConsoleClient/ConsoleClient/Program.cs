@@ -16,7 +16,7 @@ if (validRequest & notReport)
 }
 else
 {
-    await ClientCEM.ShowMonthlyReport();
+    await ClientCEM.ShowMonthlyBalanceReport();
 }
 
 

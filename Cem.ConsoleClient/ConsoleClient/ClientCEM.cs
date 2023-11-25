@@ -1,16 +1,14 @@
 using CEM.Views;
-using System.Collections.Generic;
-using System.Linq;
-using Cem.Api.Models;
 using CemApi.DTOs;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CemApi.DTOs.Reports.MonthlyBalance;
 
 public class ClientCEM
 {
-    public ClientCEM() { }
+    private const string API_URL = "http://localhost:5178/api/";
 
     public async static Task MakeTransaction(ITransactionData transactionData)
     {
@@ -25,20 +23,19 @@ public class ClientCEM
         HttpContent httpContent = new StringContent(
             jsonContent, Encoding.UTF8, "application/json");
 
-        HttpClient client = new HttpClient();
-        await client.PostAsync("http://localhost:5178/api/transaction", httpContent);
+        var client = new HttpClient();
+        await client.PostAsync($"{API_URL}transaction", httpContent);
     }
 
-    public static async Task ShowMonthlyReport()
+    public static async Task ShowMonthlyBalanceReport()
     {
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync("http://localhost:5178/api/category");
+        var client = new HttpClient();
+        HttpResponseMessage response = await client.GetAsync($"{API_URL}balance/MonthlyBalanceReport");
         
-        string categoriesJson = response.Content.ReadAsStringAsync().Result;
-        IEnumerable<Category> categories = JsonConvert
-            .DeserializeObject<IEnumerable<Category>>(categoriesJson);
+        string balanceJson = response.Content.ReadAsStringAsync().Result;
+        MonthlyBalanceReport balance = JsonConvert
+            .DeserializeObject<MonthlyBalanceReport>(balanceJson);
 
-        ITableUI tableUI = new ConsoleTableUI(categories.ToList());
-        tableUI.DrawTable();
+        ConsoleTableUI.DrawMonthlyBalanceReport(balance);
     }
 }
