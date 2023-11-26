@@ -2,7 +2,6 @@ using System.Data;
 using System.Text.Json.Serialization;
 using Cem.Api.DateManagement;
 using CEM.Context;
-using CEM.DataAccess;
 using CEM.Repositories;
 using CemApi.Data;
 using CemApi.Data.Dapper;
@@ -38,7 +37,7 @@ public class Startup
         services.AddScoped<BalanceService>();
 
         services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
-        services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
+        services.AddScoped<ITransactionRepository, DapperTransactionRepository>();
         services.AddScoped<IBalanceRepository, DapperBalanceRepository>();
 
         services.AddScoped<IDateManager, DateManager>();
