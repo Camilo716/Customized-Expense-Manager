@@ -8,11 +8,11 @@ namespace CemApi.Services;
 
 public class TransactionService
 {
-    private readonly ITransactionRepository _transactionRepository;
+    private readonly IRepository<Transaction> _transactionRepository;
     private readonly IRepository<Category> _categoryRepository;
     private readonly IDateManager _dateManager;
 
-    public TransactionService(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository, IDateManager dateManager)
+    public TransactionService(IRepository<Transaction> transactionRepository, IRepository<Category> categoryRepository, IDateManager dateManager)
     {
         _transactionRepository = transactionRepository;
         _categoryRepository = categoryRepository;
@@ -29,9 +29,9 @@ public class TransactionService
             }
         ).Result.FirstOrDefault()!;
 
-        _transactionRepository.SaveTransaction
+        _transactionRepository.InsertAsync
         (
-            new Transaction 
+            new 
             {
                 Description = transactionDto.Description,
                 Amount = float.Parse(transactionDto.Amount),
