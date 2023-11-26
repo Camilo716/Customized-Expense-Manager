@@ -6,13 +6,14 @@ A console personal financial management app
 
 ## Set Database
 
-```bash
-cd ./Cem.Api/API
-dotnet ef migrations add 'Name'
-dotnet ef database update
-```
+Clone  <https://github.com/Camilo716/CEM_Database/>
+Execute reinitializer script
 
-Or use <https://github.com/Camilo716/CEM_Database/>
+```bash
+cd CEM_Database
+chmod +x reinitalizeSchema.sh
+./reinitalizeSchema.sh 
+```
 
 -------------------------
 
