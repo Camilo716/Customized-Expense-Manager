@@ -38,11 +38,10 @@ public class Startup
         services.AddScoped<BalanceService>();
 
         services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
-        services.AddScoped<IAllCategoriesRepository, EFCategoryDataAccess>();
         services.AddScoped<ITransactionRepository, EFTransactionDataAccess>();
         services.AddScoped<IBalanceRepository, DapperBalanceRepository>();
 
-        services.AddScoped<IDateManager, DateManager>(); 
+        services.AddScoped<IDateManager, DateManager>();
 
         services.AddCors(options =>
         {
