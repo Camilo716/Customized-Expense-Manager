@@ -3,37 +3,36 @@ using Dapper;
 
 namespace CemApi.Data.Dapper;
 
-public class DapperRepository<T> : IRepository<T>
+public abstract class DapperRepository<T> : IRepository<T>
 {
     private readonly DapperDbManager _dapperDbManager;
-    private readonly CrudStoredProceduresNames _spNames;
+    protected abstract CrudStoredProceduresNames SpNames { get; }
 
-    public DapperRepository(DapperDbManager dapperDbManager, CrudStoredProceduresNames spNames)
+    public DapperRepository(DapperDbManager dapperDbManager)
     {
         _dapperDbManager = dapperDbManager;
-        _spNames = spNames;
     }
 
-    public async Task<IEnumerable<T>> FindAsync(T searchModel)
+    public async Task<IEnumerable<T>> FindAsync(object searchModel)
     {
         DynamicParameters parameters = GetParametersFromEntity(searchModel);
-        return await _dapperDbManager.ExecuteStoredProcedureReaderAsync<T>(_spNames.SelectSpName, parameters);
+        return await _dapperDbManager.ExecuteStoredProcedureReaderAsync<T>(SpNames.SelectSpName, parameters);
     }
 
-    public async Task<bool> InsertAsync(T model)
+    public async Task<bool> InsertAsync(object model)
     {
         DynamicParameters parameters = GetParametersFromEntity(model);
-        int affectedRows = await _dapperDbManager.ExecuteStoredProcedure(_spNames.InsertSpName, parameters);
+        int affectedRows = await _dapperDbManager.ExecuteStoredProcedure(SpNames.InsertSpName, parameters);
         return affectedRows > 0;
     }
 
-    private DynamicParameters GetParametersFromEntity(T entity)
+    private DynamicParameters GetParametersFromEntity(object entityParams)
     {
         var parameters = new DynamicParameters();
 
-        foreach (var property in typeof(T).GetProperties())
+        foreach (var property in entityParams.GetType().GetProperties())
         {
-            var value = property.GetValue(entity);
+            var value = property.GetValue(entityParams);
             parameters.Add(property.Name, value);
         }
 

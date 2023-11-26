@@ -2,6 +2,6 @@ namespace CemApi.Data;
 
 public interface IRepository<T>
 {
-    Task<IEnumerable<T>> FindAsync(T searchModel);
-    Task<bool> InsertAsync(T model);
+    Task<IEnumerable<T>> FindAsync(object searchModel);
+    Task<bool> InsertAsync(object model);
 }

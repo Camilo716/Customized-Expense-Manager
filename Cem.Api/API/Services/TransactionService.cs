@@ -2,16 +2,17 @@ using CEM.Repositories;
 using CemApi.DTOs;
 using Cem.Api.Models;
 using Cem.Api.DateManagement;
+using CemApi.Data;
 
 namespace CemApi.Services;
 
 public class TransactionService
 {
     private readonly ITransactionRepository _transactionRepository;
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IRepository<Category> _categoryRepository;
     private readonly IDateManager _dateManager;
 
-    public TransactionService(ITransactionRepository transactionRepository, ICategoryRepository categoryRepository, IDateManager dateManager)
+    public TransactionService(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository, IDateManager dateManager)
     {
         _transactionRepository = transactionRepository;
         _categoryRepository = categoryRepository;
@@ -22,7 +23,11 @@ public class TransactionService
     {
         TryCreateCategory(categoryName: transactionDto.Category);
 
-        Category categoryOftransaction =_categoryRepository.GetCategoryByName(transactionDto.Category);
+        Category categoryOftransaction =_categoryRepository.FindAsync(new 
+            {
+                Name = transactionDto.Category
+            }
+        ).Result.FirstOrDefault()!;
 
         _transactionRepository.SaveTransaction
         (
@@ -40,12 +45,12 @@ public class TransactionService
     private void TryCreateCategory(string categoryName)
     {
         if (!CategoryAlreadyExist(categoryName))
-            _categoryRepository.CreateNewCategory(categoryName);
+            _categoryRepository.InsertAsync(new { Name = categoryName }).Wait();
     }
 
     private bool CategoryAlreadyExist(string categoryName)
     {
-        List<Category> allCategories = _categoryRepository.GetAllCategories().ToList();
+        List<Category> allCategories = _categoryRepository.FindAsync(new { }).Result.ToList();
 
         foreach (Category categ in allCategories)
         {

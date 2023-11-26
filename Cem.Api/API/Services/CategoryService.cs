@@ -1,19 +1,20 @@
 using CEM.Repositories;
 using Cem.Api.Models;
+using CemApi.Data;
 
 namespace CemApi.Services;
 
 public class CategoryService
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IRepository<Category> _categoryRepository;
 
-    public CategoryService(ICategoryRepository categoryRepository)
+    public CategoryService(IRepository<Category> categoryRepository)
     {
         _categoryRepository = categoryRepository;
     }
 
     public async Task<IEnumerable<Category>> FindAllAsync()
     {
-        return _categoryRepository.GetAllCategories();
+        return await _categoryRepository.FindAsync(new { });
     }
 }
