@@ -1,13 +1,11 @@
 using System.Data;
 using System.Text.Json.Serialization;
 using Cem.Api.DateManagement;
-using CEM.Context;
 using CEM.Repositories;
 using CemApi.Data;
 using CemApi.Data.Dapper;
 using CemApi.Services;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 
 public class Startup
 {
@@ -25,9 +23,6 @@ public class Startup
         services.AddControllers()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-        services.AddDbContext<DbCemContext>(
-            opt => opt.UseSqlServer(_sqlServerCnxString)
-        );
         services.AddTransient<IDbConnection>(
             provider => new SqlConnection(_sqlServerCnxString)
         );
