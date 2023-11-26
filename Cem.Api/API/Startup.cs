@@ -33,7 +33,6 @@ public class Startup
         services.AddScoped<BalanceService>();
 
         services.AddTransient<IRepository<Category>, CategoryRepository>();
-        services.AddTransient<ICategoryRepository, DapperCategoryRepository>();
         services.AddTransient<ITransactionRepository, DapperTransactionRepository>();
         services.AddTransient<IBalanceRepository, DapperBalanceRepository>();
 
