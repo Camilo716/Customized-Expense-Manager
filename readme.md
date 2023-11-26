@@ -6,8 +6,8 @@ A console personal financial management app
 
 ## Set Database
 
-Clone  <https://github.com/Camilo716/CEM_Database/>
-Execute reinitializer script
+1. Clone  <https://github.com/Camilo716/CEM_Database/>
+2. Execute reinitializer script
 
 ```bash
 cd CEM_Database
