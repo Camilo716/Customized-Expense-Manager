@@ -7,16 +7,15 @@ namespace CemApi.Data.Dapper;
 
 public class DapperTransactionRepository : ITransactionRepository
 {
-    private readonly IDbConnection _connection;
+    private readonly DapperDbManager _dapperDbManager;
 
-    public DapperTransactionRepository(IDbConnection connection)
+    public DapperTransactionRepository(DapperDbManager dapperDbManager)
     {
-        _connection = connection;
+        _dapperDbManager = dapperDbManager;
     }
 
     public void SaveTransaction(Transaction transaction)
     {
-        _connection.Open();
         var parameters = new DynamicParameters();
         parameters.Add("Description", transaction.Description);
         parameters.Add("Amount", transaction.Amount);
@@ -24,10 +23,6 @@ public class DapperTransactionRepository : ITransactionRepository
         parameters.Add("Date", transaction.Date);
         parameters.Add("CategoryId", transaction.CategoryId);
 
-        _connection.Execute (
-            "InsertTransaction",
-            parameters,
-            commandType: CommandType.StoredProcedure);
-        _connection.Close();   
+        _ = _dapperDbManager.ExecuteStoredProcedure("InsertTransaction", parameters).Result;
     }
 }

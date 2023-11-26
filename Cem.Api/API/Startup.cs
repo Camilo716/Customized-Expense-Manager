@@ -31,9 +31,13 @@ public class Startup
         services.AddScoped<CategoryService>();
         services.AddScoped<BalanceService>();
 
-        services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
-        services.AddScoped<ITransactionRepository, DapperTransactionRepository>();
-        services.AddScoped<IBalanceRepository, DapperBalanceRepository>();
+        services.AddTransient<ICategoryRepository, DapperCategoryRepository>();
+        services.AddTransient<ITransactionRepository, DapperTransactionRepository>();
+        services.AddTransient<IBalanceRepository, DapperBalanceRepository>();
+
+        services.AddTransient(
+            provider => new DapperDbManager(_sqlServerCnxString)
+        );
 
         services.AddScoped<IDateManager, DateManager>();
 

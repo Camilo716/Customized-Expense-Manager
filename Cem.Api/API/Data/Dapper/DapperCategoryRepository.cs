@@ -7,34 +7,24 @@ namespace CemApi.Data.Dapper;
 
 public class DapperCategoryRepository : ICategoryRepository
 {
-    private readonly IDbConnection _connection;
+    private readonly DapperDbManager _dapperDbManager;
 
-    public DapperCategoryRepository(IDbConnection connection)
+    public DapperCategoryRepository(DapperDbManager dapperDbManager)
     {
-        _connection = connection;
+        _dapperDbManager = dapperDbManager;
     }
 
     public void CreateNewCategory(string name)
     {
-        _connection.Open();
         var parameters = new DynamicParameters();
         parameters.Add("Name", name);
 
-        _connection.Execute (
-            "InsertCategory",
-            parameters,
-            commandType: CommandType.StoredProcedure);
-        _connection.Close();
+        _ = _dapperDbManager.ExecuteStoredProcedure("InsertCategory", parameters).Result;
     }
 
     public IEnumerable<Category> GetAllCategories()
     {
-        IEnumerable<Category> categories = _connection.Query<Category>(
-            "GetAllCategories",
-            commandType: CommandType.StoredProcedure
-        );
-
-        return categories;
+        return _dapperDbManager.ExecuteStoredProcedureReaderAsync<Category>("GetAllCategories").Result;;
     }
 
     public Category GetCategoryByName(string categoryName)
@@ -42,12 +32,7 @@ public class DapperCategoryRepository : ICategoryRepository
         var parameters = new DynamicParameters();
         parameters.Add("CategoryName", categoryName);
 
-        Category? category = _connection.QuerySingleOrDefault<Category> (
-            "GetCategoryByName",
-            parameters,
-            commandType: CommandType.StoredProcedure
-        );
-
-        return category!;
+        return _dapperDbManager.ExecuteStoredProcedureReaderAsync<Category>(
+            "GetCategoryByName", parameters).Result.FirstOrDefault()!;
     }
 }
