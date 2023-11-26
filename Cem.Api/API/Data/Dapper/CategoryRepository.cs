@@ -9,7 +9,7 @@ public class CategoryRepository : DapperRepository<Category>
         get => new() 
         {
             SelectSpName = "Category_Select",
-            InsertSpName = "InsertCategory",
+            InsertSpName = "Category_Insert",
         };
     }
 
