@@ -24,15 +24,15 @@ public class DapperCategoryRepository : ICategoryRepository
 
     public IEnumerable<Category> GetAllCategories()
     {
-        return _dapperDbManager.ExecuteStoredProcedureReaderAsync<Category>("GetAllCategories").Result;;
+        return _dapperDbManager.ExecuteStoredProcedureReaderAsync<Category>("Category_Select").Result;;
     }
 
     public Category GetCategoryByName(string categoryName)
     {
         var parameters = new DynamicParameters();
-        parameters.Add("CategoryName", categoryName);
+        parameters.Add("Name", categoryName);
 
         return _dapperDbManager.ExecuteStoredProcedureReaderAsync<Category>(
-            "GetCategoryByName", parameters).Result.FirstOrDefault()!;
+            "Category_Select", parameters).Result.FirstOrDefault()!;
     }
 }
