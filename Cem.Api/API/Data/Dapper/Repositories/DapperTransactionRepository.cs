@@ -3,14 +3,14 @@ using Cem.Api.Models;
 
 namespace CemApi.Data.Dapper;
 
-public class TransactionRepository : DapperRepository<Transaction>
+public class DapperTransactionRepository : DapperRepository<Transaction>
 {
     protected override CrudStoredProceduresNames SpNames => new ()
     {
         InsertSpName = "InsertTransaction"
     };
 
-    public TransactionRepository(DapperDbManager dapperDbManager) : base(dapperDbManager)
+    public DapperTransactionRepository(DapperDbManager dapperDbManager) : base(dapperDbManager)
     {
     }
 

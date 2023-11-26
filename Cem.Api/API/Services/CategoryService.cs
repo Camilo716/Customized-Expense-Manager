@@ -1,4 +1,3 @@
-using CEM.Repositories;
 using Cem.Api.Models;
 using CemApi.Data;
 
