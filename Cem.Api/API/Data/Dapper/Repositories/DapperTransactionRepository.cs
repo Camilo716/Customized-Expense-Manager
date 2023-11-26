@@ -7,7 +7,7 @@ public class DapperTransactionRepository : DapperRepository<Transaction>
 {
     protected override CrudStoredProceduresNames SpNames => new ()
     {
-        InsertSpName = "InsertTransaction"
+        InsertSpName = "Transaction_Insert"
     };
 
     public DapperTransactionRepository(DapperDbManager dapperDbManager) : base(dapperDbManager)
